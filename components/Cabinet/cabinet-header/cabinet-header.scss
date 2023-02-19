@@ -1,0 +1,86 @@
+.cabinet-header {
+  $root: &;
+  padding: 50px 0;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+
+    &.course-page {
+      #{$root} {
+        &__title {
+          padding-top: 10px;
+        }
+        &__subtitle {
+          transform: initial;
+        }
+      }
+    }
+  }
+
+  &__title {
+    font-size: 74px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 80px;
+  }
+
+  &__subtitle {
+    font-size: 40px;
+  }
+
+  &__slider {
+    padding-top: 30px;
+  }
+
+  &__text {
+    position: absolute;
+    bottom: 10%;
+    left: 15%;
+    font-size: 30px;
+  }
+}
+
+.slider {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-size: 25px;
+    line-height: 23px;
+    margin-right: 20px;
+  }
+
+  &__btn {
+    &-prev {
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    &-next {
+      cursor: pointer;
+      margin-left: 20px;
+    }
+  }
+
+  &__body {
+    display: flex;
+  }
+
+  &__video {
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}

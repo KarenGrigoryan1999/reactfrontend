@@ -1,0 +1,126 @@
+.course-progress {
+  background-image: url('./img/lesson-table.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 350px;
+  height: 610px;
+  position: relative;
+
+  @include tablet {
+    margin-bottom: 50px;
+  }
+
+  &__decor-1 {
+    position: absolute;
+    left: 25px;
+    max-height: 140px;
+    bottom: calc(100% - 10px);
+  }
+
+  &__title {
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 115%;
+    color: $red;
+    padding-top: 60px;
+  }
+
+  &__items {
+    padding-left: 80px;
+    padding-right: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./img/progress-circle.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__number {
+    text-align: center;
+    color: $white;
+    font-size: 30px;
+    line-height: 28px;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__text {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    line-height: 23px;
+
+    &_rotate {
+      position: absolute;
+      left: -80px;
+      bottom: 46px;
+      transform: rotate(-90deg);
+      font-size: 20px;
+      line-height: 19px;
+    }
+  }
+
+  &__bar {
+    background-color: #386C55;
+    border-radius: 10px;
+    width: 50px;
+    height: 150px;
+    position: relative;
+  }
+
+  &__value {
+    padding-left: 5px;
+    padding-top: 10px;
+    color: $white;
+    font-size: 25px;
+    line-height: 23px;
+    position: absolute;
+    top: 43%;
+    left: 4px;
+    background-color: $black;
+    width: 41px;
+    height: 81px;
+    border-radius: 10px;
+  }
+
+  &__diagram {
+    margin-left: 40px;
+    position: relative;
+    background-image: url('./img/diagram.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 230px;
+    height: 230px;
+  }
+
+  &__text-x {
+    position: absolute;
+    bottom: 0;
+    right: -48px;
+    font-size: 25px;
+    line-height: 115%;
+  }
+
+  &__text-y {
+    position: absolute;
+    top: -25px;
+    left: 15px;
+    font-size: 25px;
+    line-height: 115%;
+  }
+}

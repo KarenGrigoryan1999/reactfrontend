@@ -1,0 +1,245 @@
+.stages {
+  $root: &;
+  padding-top: 300px;
+  padding-bottom: 200px;
+  @media (max-width: 990px) {
+    padding-top: 150px;
+  }
+  &__container {
+    position: relative;
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    height: 150px;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+
+  &__subtitle {
+    max-width: 158px;
+    @media (max-width: 767px) {
+      order: -1;
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+
+  &__caption {
+    font-weight: 300;
+    @media (max-width: 1199px) {
+      font-size: 90px;
+    }
+    @media (max-width: 990px) {
+      font-size: 70px;
+    }
+    @media (max-width: 767px) {
+      font-size: 52px;
+      text-align: center;
+      width: 100%;
+    }
+    @media (max-width: 479px) {
+      font-size: 44px;
+    }
+  }
+
+  &__subtitle {
+    @media (max-width: 990px) {
+      font-size: 36px;
+    }
+    @media (max-width: 479px) {
+      font-size: 32px;
+    }
+  }
+
+  &__list {
+    margin-top: 80px;
+    min-width: 550px;
+    @media (max-width: 1549px) {
+      min-width: 380px;
+    }
+    @media (max-width: 1199px) {
+      min-width: 340px;
+      margin-top: 40px;
+    }
+    @media (max-width: 767px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 65px;
+      @media (max-width: 1199px) {
+        margin-bottom: 35px;
+      }
+      @media (max-width: 767px) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      &:nth-child(n + 3) {
+        margin-top: 20px;
+      }
+    }
+
+    &.blue {
+      #{$root} {
+        &__item-icon {
+          fill: #2f80ed;
+        }
+      }
+    }
+
+    &.green {
+      #{$root} {
+        &__item-icon {
+          fill: #356e4c;
+        }
+      }
+    }
+
+    &.purple {
+      #{$root} {
+        &__item-icon {
+          fill: #bd6ef5;
+        }
+      }
+    }
+
+    &.yellow {
+      #{$root} {
+        &__item-icon {
+          fill: #f5c97d;
+        }
+      }
+    }
+
+    &.active {
+      #{$root} {
+        &__item-icon {
+          display: flex;
+          margin-right: 30px;
+          @media (max-width: 1549px) {
+            margin-right: 20px;
+          }
+          @media (max-width: 767px) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  &__item-icon {
+    fill: none;
+    display: none;
+    flex: none;
+    @media (max-width: 1549px) {
+      width: 41px;
+      height: 39px;
+    }
+    @media (max-width: 767px) {
+      width: 21px;
+      height: 19px;
+    }
+  }
+
+  &__link {
+    font-size: 50px;
+    line-height: 115%;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    flex: none;
+    @media (max-width: 1549px) {
+      font-size: 36px;
+    }
+    @media (max-width: 1199px) {
+      font-size: 32px;
+    }
+    @media (max-width: 767px) {
+      font-size: 26px;
+    }
+    @media (max-width: 479px) {
+      font-size: 20px;
+    }
+
+    &:hover {
+      color: $purple;
+    }
+
+    &_active {
+      position: relative;
+    }
+  }
+
+  &__image-box {
+    position: relative;
+    top: 50px;
+    flex: none;
+    max-width: calc(100% - 380px);
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    @media(max-width: 1549px) {
+      max-width: calc(100% - 500px);
+    }
+    @media (max-width: 1199px) {
+      max-width: calc(100% - 340px);
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__image-mask {
+    position: relative;
+    z-index: -1;
+  }
+
+  &__image {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  &__decor {
+    position: absolute;
+    top: -300px;
+    left: -15%;
+    z-index: 1;
+    @media (max-width: 1199px) {
+      width: 300px;
+    }
+    @media (max-width: 990px) {
+      width: 250px;
+      top: -150px;
+    }
+  }
+}

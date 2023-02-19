@@ -1,0 +1,22 @@
+@font-face {
+   font-family: 'Heroic';
+   src: url('../fonts/Heroic.otf');
+}
+
+@font-face {
+   font-family: 'LaptevBrush';
+   src: url('../fonts/LaptevBrush.eot');
+   src: url('../fonts/LaptevBrush.eot') format('embedded-opentype'),
+      url('../fonts/LaptevBrush.woff2') format('woff2'),
+      url('../fonts/LaptevBrush.woff') format('woff'),
+      url('../fonts/LaptevBrush.ttf') format('truetype'),
+      url('../fonts/LaptevBrush.svg#LaptevBrush') format('svg');
+}
+
+@font-face {
+   font-family: '3Dumb';
+   src: url('../fonts/3Dumb.eot');
+   src: local('☺'), url('../fonts/3Dumb.woff') format('woff'), url('../fonts/3Dumb.ttf') format('truetype'), url('../fonts/3Dumb.svg') format('svg');
+   font-weight: normal;
+   font-style: normal;
+}

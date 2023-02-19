@@ -1,0 +1,144 @@
+.teacher {
+   margin-bottom: 100px;
+
+   &__top {
+      display: flex;
+      padding-top: 100px;
+      margin-bottom: 50px;
+
+      &>.subtitle {
+         font-size: 50px;
+         line-height: 115%;
+         color: $blue;
+         transform: rotate(-10deg);
+
+         @include tablet {
+            margin-bottom: 20px;
+            padding-top: 20px;
+         }
+      }
+
+      @include tablet {
+         padding-top: 20px;
+         flex-direction: column;
+         align-items: center;
+      }
+   }
+
+   &__caption {
+      color: $blue;
+
+      @include tablet {
+         text-align: center;
+      }
+   }
+
+   &__body {
+      display: flex;
+      justify-content: space-between;
+
+      @include mobile {
+         flex-direction: column;
+         align-items: center;
+      }
+   }
+
+   &__link {
+      font-size: 65px;
+      line-height: 115%;
+      position: relative;
+      margin-bottom: 67px;
+
+      &::after {
+         position: absolute;
+         content: '';
+         background-image: url('img/inst.svg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 54px;
+         height: 54px;
+         transform: rotate(0deg);
+         top: 15px;
+         right: 0px;
+      }
+
+      @include tablet {
+         margin-bottom: 30px;
+      }
+   }
+
+
+   &__item {
+      padding-left: 80px;
+      position: relative;
+
+      &:not(:last-child) {
+         margin-bottom: 63px;
+
+         @include tablet {
+            margin-bottom: 40px;
+         }
+      }
+
+      &_blue::before {
+         position: absolute;
+         content: '';
+         background-image: url('img/smile-blue.svg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 62px;
+         height: 62px;
+         left: 0;
+      }
+
+      &_green::before {
+         position: absolute;
+         content: '';
+         background-image: url('img/smile-green.svg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 62px;
+         height: 62px;
+         left: 0;
+      }
+
+      &_purple::before {
+         position: absolute;
+         content: '';
+         background-image: url('img/smile-purple.svg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 62px;
+         height: 62px;
+         left: 0;
+      }
+
+      &_yellow::before {
+         position: absolute;
+         content: '';
+         background-image: url('img/smile-yellow.svg');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         width: 62px;
+         height: 62px;
+         left: 0;
+      }
+
+
+   }
+
+   &__text {
+      font-size: 50px;
+      line-height: 115%;
+   }
+
+   &__image {
+      cursor: pointer;
+      min-width: 500px;
+   }
+}
