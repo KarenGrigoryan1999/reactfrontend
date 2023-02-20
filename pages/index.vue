@@ -46,7 +46,7 @@ export default {
     //   }),
     // }
     return {
-      courses: [],
+      courses: []
     }
   },
   data() {
