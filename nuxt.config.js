@@ -70,7 +70,7 @@ export default {
     baseURL:
       process.env.NODE_ENV === "development"
         ? "http://localhost:7070"
-        : "http://5.63.157.28:8080",
+        : "http://217.18.63.132:7070",
     rejectUnauthorized: false,
   },
 
@@ -78,7 +78,7 @@ export default {
     VUE_APP_STORAGE_URL:
       process.env.NODE_ENV === "development"
         ? "http://localhost:7070"
-        : "http://5.63.157.28:8080",
+        : "http://217.18.63.132:8080",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
