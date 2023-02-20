@@ -32,22 +32,22 @@ export default {
   },
 
   async asyncData({store, $axios}) {
-    //  await $axios.get("/main-page-fields").then((r) => {
-    //     store.dispatch("set", {name: "mainPageInfo", value: r.data[0]});
-    //   })
-    // await $axios.get("/xfields").then((r) => {
-    //   r.data.forEach((x) => {
-    //     store.dispatch("set", {name: x.code, value: x.value})
-    //   })
-    // })
-    // return {
-    //   courses: await $axios.get("/courses").then((r) => {
-    //     return r.data.map((t, i) => ({...t, active: i === 0}))
-    //   }),
-    // }
+     await $axios.get("/main-page-fields").then((r) => {
+        store.dispatch("set", {name: "mainPageInfo", value: r.data[0]});
+      })
+    await $axios.get("/xfields").then((r) => {
+      r.data.forEach((x) => {
+        store.dispatch("set", {name: x.code, value: x.value})
+      })
+    })
     return {
-      courses: []
+      courses: await $axios.get("/courses").then((r) => {
+        return r.data.map((t, i) => ({...t, active: i === 0}))
+      }),
     }
+    // return {
+    //   courses: [],
+    // }
   },
   data() {
     return {
