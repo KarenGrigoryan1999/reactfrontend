@@ -3,7 +3,7 @@
     {
       "name": "front-app",
       "script": "npm",
-      "args": "start -p 80",
+      "args": "start",
       "instances": "max",
       "exec_mode": "cluster"
     }
