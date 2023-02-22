@@ -5,6 +5,10 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   server: {
     host: '0.0.0.0',
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'certs', 'priv.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'cert.pem'))
+    }
   },
   head: {
     title: "badteacher.ru",
