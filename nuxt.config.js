@@ -15,7 +15,7 @@ export default {
       // this is the url used on the server:
       baseURL: "http://217.18.63.132:7070",
       // this is the url used in the browser:
-      browserBaseURL: "https://217.18.63.132:7070",
+      browserBaseURL: "http://217.18.63.132:7070",
     },
 },
   head: {
