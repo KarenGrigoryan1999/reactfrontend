@@ -10,6 +10,14 @@ export default {
       cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'cert.pem'))
     }
   },
+  publicRuntimeConfig: {
+    axios: {
+      // this is the url used on the server:
+      baseURL: "http://localhost:3000",
+      // this is the url used in the browser:
+      browserBaseURL: "https://localhost:3000",
+    },
+},
   head: {
     title: "badteacher.ru",
     mode: "server",
