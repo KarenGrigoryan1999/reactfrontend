@@ -2,8 +2,9 @@
   "apps": [
     {
       "name": "front-app",
-      "script": "npm",
-      "args": "start",
+      "script": "node_modules/nuxt-start/bin/nuxt-start.js",
+      "cwd": "/home/site/client",
+      "args": "start -p 443",
       "instances": "max",
       "exec_mode": "cluster"
     }

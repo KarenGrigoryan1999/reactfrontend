@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt --env.NODE_TLS_REJECT_UNAUTHORIZED=0",
-    "build": "nuxt build",
+    "build": "nuxt build \"80\"",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:prettier": "prettier --check .",
@@ -19,6 +19,7 @@
     "@vkontakte/superappkit": "^1.46.0",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
+    "nuxt-start": "^2.16.0",
     "perfect-scrollbar": "^1.5.5",
     "swiper": "^6.8.1",
     "uuid": "^9.0.0",
