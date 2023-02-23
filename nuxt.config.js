@@ -14,9 +14,9 @@ export default {
   publicRuntimeConfig: {
     axios: {
       // this is the url used on the server:
-      baseURL: "http://localhost:7071",
+      baseURL: "http://217.18.63.132:7071",
       // this is the url used in the browser:
-      browserBaseURL: "https://localhost:7070",
+      browserBaseURL: "https://217.18.63.132:7070",
     },
 },
   head: {
