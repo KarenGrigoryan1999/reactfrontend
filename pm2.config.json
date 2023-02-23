@@ -3,7 +3,7 @@
     {
       "name": "front-app",
       "script": "npm",
-      "args": "start -p '443'",
+      "args": "start",
       "instances": "max",
       "exec_mode": "cluster"
     }
