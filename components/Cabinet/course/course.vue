@@ -1,16 +1,18 @@
 <template lang="pug">
   section.cabinet-course(:class="course.theme")
     ._container.container
-      course-progress(:theme="theme")
+      course-progress(:theme="theme" :lessonsCompleted="lessonsCompletedPercent" :tests="course.results")
       ._elem.about-elem(v-if="isFile")
         a(:href="filePath(course.file[0])" target="_blank" download)._download-link Скачать методичку
       ._right
         ._heading.about-elem(:style="courseNameStyles") {{ course.name }}
-        ._info 1/{{ lessonsCount }} уроков
+        ._info {{lessonsCompleted}}/{{ lessonsCount }} уроков
         perfect-scrollbar._list(tag="ul" :options="{wheelPropagation: false}")
-          nuxt-link._item(v-for="lesson in course.lessons" :key="lesson.id" tag="li" :to="`/cabinet/lesson/${lesson.id}`")
+          nuxt-link._item(v-for="(lesson, idx) in course.lessons" :key="lesson.id + lesson.name" :class="{passed: idx + 1 <= lessonsCompleted, current: idx === lessonsCompleted}" tag="li" :to="`/cabinet/lesson/${lesson.id}`")
             span._link {{ lesson.name }}
-        button._button Продолжить просмотр
+          nuxt-link._item.test(v-for="(test, idx) in course.tests" :key="test.id + test.name" tag="li" :to="`/cabinet/tests/${test.id}`")
+            span._link {{ test.name }}
+        nuxt-link._button(:to="`/cabinet/lesson/${lastLesson}`" v-if="lessonsCompleted !== lessonsCount") Продолжить просмотр
           svg(width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg")._button-icon
             path(:style="playBtnStyles" d="M16.681 10.6576C17.2965 11.0508 17.2965 11.9498 16.681 12.343L1.53838 22.0172C0.872735 22.4424 9.47256e-07 21.9644 9.81783e-07 21.1745L1.82755e-06 1.82558C1.86208e-06 1.03568 0.872757 0.557608 1.5384 0.982892L16.681 10.6576Z")
       img._decor-4(v-if="theme" :src="require(`~/assets/img/courses-theme/5/${theme}.png`)")
@@ -32,13 +34,18 @@ export default {
       course: {
         theme: "",
         lessons: [],
-        file: [{id: 0}]
+        tests: [],
+        file: [{id: 0}],
+        lastLesson: 0,
+        finishedLessons: [],
       }
     }
   },
   computed: {
     courseId: state => state.$route.params.id,
     lessonsCount: state => state.course.lessons.length || 0,
+    lessonsCompleted: state => state.course.finishedLessons.length,
+    lessonsCompletedPercent: state => Math.round((state.course.finishedLessons.length / state.course.lessons.length) * 100) || 0,
     isFile: state => state.course.file[0]?.id,
     theme: state => state.course?.theme,
     courseNameStyles: state => ({
@@ -46,7 +53,7 @@ export default {
     }),
     playBtnStyles: state => ({
       fill: state.course.color
-    })
+    }),
   },
   async created() {
     const checkCourse = await this.currentUser.courses.find(c => c.id === +this.courseId);
@@ -58,11 +65,10 @@ export default {
   },
   methods: {
     async getCourse() {
-      await this.$axios.get(`/courses/${this.courseId}`).then(r => {
+      await this.$axios.get(`/courses/my/${this.courseId}`).then(r => {
         this.course = r.data;
+        this.lastLesson = this.course.lessons.reduce((value, lessonElement, idx) => idx === this.lessonsCompleted ? lessonElement.id: value, 0);
         const el = document.querySelector(".ps__rail-y");
-
-        console.log(el);
 
         el.style.backgroundColor = `${this.course.color}!important`;
       })

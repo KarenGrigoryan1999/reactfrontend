@@ -10,6 +10,10 @@
 
 div[id$='-page'], #cabinet-course {
   padding-top: 120px;
+
+  @include smallmobile {
+    padding-top: 160px;
+  }
 }
 
 html {
@@ -19,7 +23,6 @@ html {
 body {
   font-family: $base-font;
   font-size: $base-font-size;
-  min-width: 375px;
   color: $black;
   background: #c4c4c4;
   overflow: hidden;
@@ -97,6 +100,9 @@ button {
   }
   @media (max-width: 479px) {
     max-width: 375px;
+  }
+  @media (max-width: 360px) {
+    padding: 0 5px;
   }
 }
 

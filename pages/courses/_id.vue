@@ -3,7 +3,7 @@
     pre
     CourseHeader(:course="course")
     Questions(:course="course")
-    StartFree
+    StartFree(:course="course")
 </template>
 
 <script>

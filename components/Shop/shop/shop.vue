@@ -8,7 +8,7 @@
           ._subtitle.subtitle Магазин
         ._balance(v-if="isAuth")
           ._balance-text Твои баллы
-          ._balance-value(:data-length="`${String($auth.user.balance).length}`") {{ $auth.user.balance }}
+          ._balance-value(:data-length="`${String($auth.user.balance).length}`") {{ score }}
       ._body
         ._item(v-for="item in list" :key="item.id")
           ._item-wrap
@@ -27,6 +27,21 @@ export default {
       type: Array,
       default: () => [],
       required: true
+    }
+  },
+  data() {
+    return {
+      score: 0
+    }
+  },
+  async created() {
+    await this.getResults();
+  },
+  methods: {
+    async getResults() {
+      await this.$axios.get(`/results`).then(r => {
+        this.score = r.data;
+      })
     }
   }
 }

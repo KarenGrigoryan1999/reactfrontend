@@ -2,7 +2,7 @@
   header.app-header
     ._container.container
       nuxt-link._logo(to="/")
-        img(src="@/assets/img/logo.png")._logo
+        img(src="@/assets/img/bt-logo.svg")._logo
       ._contacts(v-if="!isAuth")
         a._phone(:href="`tel:${formattedPhone}`") {{ phone }}
         app-button(size="s" type="bordered") Перезвоните мне

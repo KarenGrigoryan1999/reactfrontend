@@ -28,20 +28,21 @@ export default {
   },
   mounted() {
       window.addEventListener('scroll', function() {
-      var element = document.querySelector('.anchor');
-      var position = element.getBoundingClientRect();
+      let element = document.querySelector('.anchor');
+      if(element) {
+        let position = element.getBoundingClientRect();
 
-      const spot = document.querySelector('.sale__spot-container');
-      const pinkSpot = document.querySelector('.sale__decor-1');
-      const boy = document.querySelector('.sale__image');
-      // checking whether fully visible
-      if(position.top >= 0 && position.bottom <= window.innerHeight) {
-        spot.style.transform = 'scale(1)';
-        pinkSpot.style.transform = 'scale(1)';
-        boy.style.opacity = '1';
-        boy.style.transform = 'translatex(0)';
-        
-      }
+        const spot = document.querySelector('.sale__spot-container');
+        const pinkSpot = document.querySelector('.sale__decor-1');
+        const boy = document.querySelector('.sale__image');
+        if(position.top >= 0 && position.bottom <= window.innerHeight) {
+          spot.style.transform = 'scale(1)';
+          pinkSpot.style.transform = 'scale(1)';
+          boy.style.opacity = '1';
+          boy.style.transform = 'translatex(0)';
+          
+        }
+    }
   });
   }
 }
@@ -96,6 +97,7 @@ export default {
       left: -40px;
       bottom: -70%;
       transform: rotate(-30deg);
+      display: none;
     }
 
     @include mobile {
@@ -223,6 +225,10 @@ export default {
       width: 900px;
       max-width: 200%;
     }
+
+    @include smallmobile {
+      width: 600px;
+    }
   }
 
   &__top {
@@ -236,7 +242,7 @@ export default {
   }
 
   &__caption {
-    padding-right: 30px;
+    text-align: center;
     font-size: 58px;
 
     @include mediumdesktop {
@@ -279,6 +285,10 @@ export default {
     @include tablet {
       padding: 12px 70px;
     }
+  }
+
+  @include tablet {
+    margin-bottom: 0;
   }
 }
 </style>

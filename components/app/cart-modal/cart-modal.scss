@@ -10,6 +10,19 @@
   -webkit-overflow-scrolling: touch;
   z-index: 1001;
 
+  &__discount {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: green;
+  }
+
+  &__loading {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
   &__dialog {
     display: flex;
     justify-content: center;
@@ -153,14 +166,25 @@
 
   &__button-wrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 50px;
+
+    * {
+      width: fit-content;
+    }
+
+    .input-modal {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 
   &__delete {
     background-color: transparent;
     border: none;
     outline: none;
+    min-width: 24px;
 
     img {
       width: 24px;

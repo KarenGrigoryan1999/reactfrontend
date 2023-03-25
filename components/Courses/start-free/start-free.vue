@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.start-free
+  section.start-free(v-if="showButton")
     ._container.container
       ._wrapper
         img._decor-1(src="./img/start-free-decor1.svg", alt="")
@@ -12,8 +12,16 @@
 <script>
 export default {
   name: "StartFree",
+  props: {
+    course: {
+      required: true,
+      type: Object,
+      default: {}
+    }
+  },
   computed: {
-    id: state => state.$route.params.id
+    id: state => state.$route.params.id,
+    showButton: (state) => state.currentUser ? !Boolean(state.currentUser.courses.find((element) => element.id === state.course.id)) : false
   }
 }
 </script>

@@ -43,11 +43,6 @@ export default {
     facts: (state) => state.teacher.text.split("\n"),
     video: state => state.filePath(state.teacher.video[0])
   },
-  watch: {
-    showVideo() {
-      console.log("showVideo");
-    }
-  }
 }
 </script>
 

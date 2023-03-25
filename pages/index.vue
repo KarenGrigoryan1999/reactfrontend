@@ -2,7 +2,7 @@
   #main-page
     hero
     Sale(:mainPageInfo="mainPageInfo")
-    collect-set(:courses="courses" v-if="courses.length")
+    collect-set(:courses="propousedCourses" v-if="propousedCourses.length")
     index-teachers(:courses="courses" v-if="courses.length")
     teacher-selection(:mainPageInfo="mainPageInfo")
     stages
@@ -30,7 +30,6 @@ export default {
     Sale,
     Hero,
   },
-
   async asyncData({store, $axios}) {
      await $axios.get("/main-page-fields").then((r) => {
         store.dispatch("set", {name: "mainPageInfo", value: r.data[0]});
@@ -40,22 +39,30 @@ export default {
         store.dispatch("set", {name: x.code, value: x.value})
       })
     })
+    await $axios.get("/learn-stages").then((r) => {
+      store.dispatch("set", {name: 'stages', value: r.data})
+    })
+    
     return {
       courses: await $axios.get("/courses").then((r) => {
         return r.data.map((t, i) => ({...t, active: i === 0}))
       }),
     }
-    // return {
-    //   courses: [],
-    // }
   },
   data() {
     return {
       courses: [],
     }
   },
+  created() {
+    this.userCourses = this.currentUser ? this.currentUser.courses : [];
+  },
   computed: {
-    mainPageInfo: (state) => state.$store.getters.mainPageInfo
+    mainPageInfo: (state) => state.$store.getters.mainPageInfo,
+    stages: (state) => state.$store.getters.stages,
+    propousedCourses: (state) => state.courses.filter((element) => {
+      return state.userCourses.reduce((acc, userCourseElement) => { return userCourseElement.id !== element.id ? acc : false}, true)
+    })
   },
   beforeMount() {
     if(this.$route.query.code){

@@ -9,7 +9,7 @@
           ._text {{ course.lessons.length }} {{ declination(course.lessons.length, ["урок", "урока", "уроков"]) }}
           ._text Задания для практики
           ._text {{ course.description }}
-      button.btn.btn_reset._btn Хочу попробовать
+      button.btn.btn_reset._btn(v-if="showButton" @click="setFreeModalStatus(true, course.id)") Хочу попробовать
 </template>
 
 <script>
@@ -21,6 +21,9 @@ export default {
       default: () => ({}),
       required: true
     }
+  },
+  computed: {
+    showButton: (state) => state.currentUser ? !Boolean(state.currentUser.courses.find((element) => element.id === state.course.id)) : false
   }
 }
 </script>

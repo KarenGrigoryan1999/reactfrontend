@@ -23,6 +23,9 @@
                 ._item-title ИТОГО с&nbsp;учётом&nbsp;скидки:
                 ._item-price {{ salePrice }}
             ._button-wrap
+              input.input-modal(placeholder="Введи промокод" v-model="promo" @input="promoLoading = true")
+              p._loading(v-if="promoLoading") Проверка...
+              p._discount(v-if="promoDiscount") Скидка {{ promoDiscountPrice }} от начальной стоймости при использовании купона
               app-button(size="xl" @click.native="pay") Оплатить
           ._tablet-content(v-else)
             ._title Ваша корзина пуста
@@ -33,21 +36,26 @@
 <script>
 import AppTablet from "../app-tablet/app-tablet";
 import AppButton from "../app-button/app-button";
+import {debounce} from '../../../helpers/debounce'
 
 export default {
   name: "CartModal",
   components: {AppButton, AppTablet},
   data() {
     return {
+      promo: '',
+      promoDiscount: null,
       isLoading: true,
+      promoLoading: false,
       list: []
     }
   },
   computed: {
     sale: state => state.$store.getters.sale / 100,
     oldPrice: state => state.list.reduce((acc, current) => acc + current.price, 0),
-    salePrice: state => state.oldPrice - (state.oldPrice * state.sale),
-    isNeedSale: state => state.list.length >= 4
+    salePrice: state => Math.max(state.oldPrice - (state.oldPrice * state.sale) - (state.promoDiscount ? (state.promoDiscount.type === 0 ? state.oldPrice * (state.promoDiscount.discount / 100) : state.promoDiscount.discount) : 0), 0),
+    isNeedSale: state => state.list.length >= 4 || state.promoDiscount,
+    promoDiscountPrice: state => state.promoDiscount ? `${state.promoDiscount.discount}${state.promoDiscount.type === 0 ? '%' : ' рублей'}` : '',
   },
   async created() {
     if (this.cart.length) {
@@ -58,6 +66,17 @@ export default {
       return;
     }
     this.isLoading = false;
+  },
+  watch: {
+    promo: debounce(async function (newVal) {
+      this.promoLoading = false;
+      try {
+        const res = await this.$axios.post(`/promo/check/${newVal}`);
+        this.promoDiscount = res.data;
+      } catch(e) {
+        this.promoDiscount = null;
+      }
+    }, 1000)
   },
   methods: {
     redirectToCourses() {
@@ -80,15 +99,8 @@ export default {
       }
     },
     deleteCourse(id) {
-      console.log(this.cart, '1');
-      const list = this.list.filter((element) => element.id !== id);
-      this.list = [...list];
-
-      const cart = this.$store.getters.cart.filter((element) => element.courseId !== id);
-      this.$store.dispatch('set', {name: 'cart', value: cart});
-
-      this.$axios.delete(`/cart/${id}`);
-    }
+      this.deleteFromCart(id);
+    },
   }
 }
 </script>

@@ -21,7 +21,7 @@
             span n
             span o
             span w
-          button._btn.btn.btn_reset Начать
+          button._btn.btn.btn_reset(@click="goToCourses") Начать
       img(src="./img/start-decor-1.svg")._decor-1
       img(src="./img/start-decor-2.svg")._decor-2
       img(src="./img/start-decor-3.svg")._decor-3
@@ -31,6 +31,11 @@
 <script>
 export default {
   name: "Start",
+  methods: {
+    goToCourses() {
+      this.$router.push('/courses')
+    }
+  }
 }
 </script>
 

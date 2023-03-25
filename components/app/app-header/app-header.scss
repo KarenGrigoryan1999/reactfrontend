@@ -185,8 +185,10 @@
     width: 63px;
     height: 58px;
     background: url(./img/cart.svg) center/cover;
-    @media (max-width: 1199px) {
-      display: none;
+    @media (max-width: 600px) {
+      position: absolute;
+      right: 30px;
+      top: calc(100vh - 100px);
     }
 
     &:hover {

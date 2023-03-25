@@ -11,6 +11,10 @@
     margin-bottom: 50px;
   }
 
+  @include smallmobile {
+    margin-left: -50px;
+  }
+
   &__decor-1 {
     position: absolute;
     left: 25px;
@@ -84,12 +88,11 @@
 
   &__value {
     padding-left: 5px;
-    padding-top: 10px;
     color: $white;
     font-size: 25px;
     line-height: 23px;
     position: absolute;
-    top: 43%;
+    bottom: 2%;
     left: 4px;
     background-color: $black;
     width: 41px;
@@ -100,12 +103,14 @@
   &__diagram {
     margin-left: 40px;
     position: relative;
-    background-image: url('./img/diagram.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 230px;
     height: 230px;
+
+    display: flex;
+    align-items: end;
   }
 
   &__text-x {
@@ -119,8 +124,47 @@
   &__text-y {
     position: absolute;
     top: -25px;
-    left: 15px;
+    left: -10px;
     font-size: 25px;
     line-height: 115%;
+  }
+
+  &__test-level {
+    background: #386C55;
+    border: 2px solid #2C292D;
+    border-radius: 5px;
+    height: 100%;
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  &__test-level-wrapper {
+    height: 100%;
+    padding-top: 15px;
+    margin-bottom: 15px;
+
+    p {
+      text-align: center;
+      font-size: 22px;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      filter: grayscale(1);
+    }
+  }
+
+  @include tablet {
+    margin-left: -30px;
+  }
+
+  @include tinymobile {
+    margin-left: -60px;
   }
 }

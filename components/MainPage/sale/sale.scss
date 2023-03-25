@@ -91,7 +91,6 @@
     }
     @media (max-width: 767px) {
       width: calc(100% + 200px);
-      margin-left: -100px;
       max-width: initial;
     }
   }
@@ -103,7 +102,6 @@
   }
 
   &__caption {
-    padding-right: 30px;
     color: #333;
     font-weight: 600;
 

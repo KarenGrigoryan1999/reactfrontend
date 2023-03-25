@@ -7,19 +7,13 @@
         ._subtitle.subtitle Привет, {{ currentUser.name }}
       ._slider(v-if="!coursePage")
         .slider__top
-          .slider__text Продолжить просмотр
-          //.slider__buttons
-          //  img(src="./img/arrow-prev.svg").slider__btn-prev
-          //  img(src="./img/arrow-next.svg").slider__btn-next
+          .slider__text(v-if="lastLessons.length > 0") Продолжить просмотр
         .slider__body
-          .slider__item
-            img.slider__video(src="./img/slider-video.png", alt="")
-            .slider__subject Биология ОГЭ
-            .slider__info 1 урок - Разбор заданий
-          .slider__item
-            img.slider__video(src="./img/slider-video.png", alt="")
-            .slider__subject Биология ОГЭ
-            .slider__info 1 урок - Разбор заданий
+          .slider__item(v-for="lesson of lastLessons")
+            nuxt-link(:to='`/cabinet/lesson/${lesson.id}`')
+              img.slider__video(src="./img/slider-video.png", alt="")
+              .slider__subject {{ lesson.courses[0].name }}
+              .slider__info {{ lesson.name }}
 </template>
 
 <script>
@@ -32,8 +26,13 @@ export default {
       required: false
     }
   },
+  data() {
+    return {
+      passedLessons: []
+    }
+  },
   computed: {
-    translatedName: function () {
+    translatedName: (state) => {
       let answer = "";
       const alphabet = {
         'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
@@ -53,17 +52,47 @@ export default {
         'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya'
       };
 
-      for (let i = 0; i < this.currentUser.name.length; ++i) {
-        if (alphabet[this.currentUser.name[i]] === undefined) {
-          answer += this.currentUser.name[i];
+      for (let i = 0; i < state.currentUser.name.length; ++i) {
+        if (alphabet[state.currentUser.name[i]] === undefined) {
+          answer += state.currentUser.name[i];
         } else {
-          answer += alphabet[this.currentUser.name[i]];
+          answer += alphabet[state.currentUser.name[i]];
         }
       }
 
       return `Hi, ${answer}`;
-    }
-  }
+    },
+    lastLessons: (state) => state.passedLessons.sort((a,b) => b.position - a.position).reduce((acc, element) => {
+      if(!acc.find((lessonElement) => lessonElement.courses[0].name === element.courses[0].name)) {
+        return [...acc, element]
+      } else {
+        return acc
+      }
+    }, [])
+  },
+  async created() {
+    await this.getPassedLessons();
+    this.setLoaded();
+    this.$store.dispatch("set", {
+      name: 'isReady',
+      value: false,
+    })
+  },
+  methods: {
+    async getPassedLessons() {
+      this.$axios.get('/lessons/passed').then(r => {
+          this.passedLessons = r.data;
+      });
+    },
+    setLoaded() {
+      setTimeout(() => {  
+        this.$store.dispatch("set", {
+          name: "isReady",
+          value: true,
+        });
+      }, 2000);
+    },
+  },
 }
 </script>
 

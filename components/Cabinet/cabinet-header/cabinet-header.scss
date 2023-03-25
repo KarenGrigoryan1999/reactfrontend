@@ -5,10 +5,15 @@
   &__container {
     display: flex;
     justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+    }
   }
 
   &__info {
     display: flex;
+    flex-wrap: wrap;
 
     &.course-page {
       #{$root} {
@@ -71,16 +76,13 @@
   }
 
   &__body {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-gap: 30px;
+    min-width: 290px;
   }
 
   &__video {
     margin-bottom: 10px;
-  }
-
-  &__item {
-    &:not(:last-child) {
-      margin-right: 30px;
-    }
   }
 }

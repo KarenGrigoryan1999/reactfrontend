@@ -2,14 +2,16 @@
   #teacher-page
     Teacher(:teacher="teacher")
     teacher-illustration(:teacher="teacher")
+    teacher-course-link(:teacher="teacher")
 </template>
 
 <script>
 import Teacher from "../../components/Teachers/teacher/teacher"
 import TeacherIllustration from "../../components/Teachers/teacher-illustration/teacher-illustration"
+import TeacherCourseLink from "../../components/Teachers/teacher-course-link/teacher-course-link"
 export default {
   name: "TeacherPage",
-  components: { TeacherIllustration, Teacher },
+  components: { TeacherIllustration, TeacherCourseLink, Teacher },
   layout: "main",
   async asyncData({ store, $axios, route }) {
     await $axios.get("/xfields").then((r) => {

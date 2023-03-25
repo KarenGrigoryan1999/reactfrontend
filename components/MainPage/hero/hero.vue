@@ -3,14 +3,19 @@
     ._container.container
       img(src="./img/main-bg.png")._bg
       img(src="./img/main-bg-mobile.png")._bg.-mobile
-      app-button._btn(size="xxl") Хочу попробовать
+      app-button._btn(size="xxl" @click.native="goToCourses") Хочу попробовать
 </template>
 
 <script>
 import AppButton from "../../app/app-button/app-button";
 export default {
   name: "Hero",
-  components: {AppButton}
+  components: {AppButton},
+  methods: {
+    goToCourses() {
+      this.$router.push('/courses')
+    }
+  }
 }
 </script>
 
