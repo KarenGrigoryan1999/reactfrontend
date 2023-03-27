@@ -81,6 +81,17 @@ Vue.mixin({
         value: id,
       });
     },
+    setGiftModalStatus(status, gift) {
+      this.setBodyOverflow(status)
+      this.$store.dispatch("set", {
+        name: "showGiftModal",
+        value: status,
+      });
+      this.$store.dispatch("set", {
+        name: "gift",
+        value: gift,
+      });
+    },
     setBodyOverflow(status) {
       const body = document.body
 

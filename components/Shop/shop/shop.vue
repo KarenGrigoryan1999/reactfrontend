@@ -8,9 +8,9 @@
           ._subtitle.subtitle Магазин
         ._balance(v-if="isAuth")
           ._balance-text Твои баллы
-          ._balance-value(:data-length="`${String($auth.user.balance).length}`") {{ score }}
+          ._balance-value(:data-length="`${String($auth.user.balance).length}`") {{ balance }}
       ._body
-        ._item(v-for="item in list" :key="item.id")
+        ._item(v-for="item in list" :key="item.id" @click="getGift(item)")
           ._item-wrap
             ._sticker
               ._sticker-value(:data-length="`${String(item.price).length}`") {{ item.price }}
@@ -31,8 +31,11 @@ export default {
   },
   data() {
     return {
-      score: 0
+
     }
+  },
+  computed: {
+    balance: state => state.$store.getters.balance
   },
   async created() {
     await this.getResults();
@@ -40,8 +43,18 @@ export default {
   methods: {
     async getResults() {
       await this.$axios.get(`/results`).then(r => {
-        this.score = r.data;
+        this.$store.dispatch("set", {
+          name: "balance",
+          value: r.data.balance,
+        });
       })
+    },
+    async getGift(item) {
+      if(item.price > this.balance) {
+        return this.setGiftModalStatus(true, null);
+      }
+
+      return this.setGiftModalStatus(true, item);
     }
   }
 }

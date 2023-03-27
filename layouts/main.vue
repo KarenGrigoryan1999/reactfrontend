@@ -11,6 +11,8 @@
       transition(name="modal")
         free-modal(v-if="showFreeModal")
       transition(name="modal")
+        gift-modal(v-if="showGiftModal")
+      transition(name="modal")
         success-modal(v-if="showSuccessModal")
       app-footer
 </template>
@@ -21,14 +23,16 @@ import AppFooter from "../components/app/app-footer/app-footer"
 import AuthModal from "../components/app/auth-modal/auth-modal"
 import CartModal from "../components/app/cart-modal/cart-modal";
 import FreeModal from "../components/app/free-modal/free-modal";
+import GiftModal from "../components/app/gift-modal/gift-modal";
 import SuccessModal from "../components/app/success-modal/success-modal"
 
 export default {
-  components: {CartModal, AppFooter, AppHeader, AppLoader, AuthModal, FreeModal, SuccessModal },
+  components: {CartModal, AppFooter, AppHeader, AppLoader, AuthModal, FreeModal, SuccessModal, GiftModal },
   computed: {
     showAuthModal: state => state.$store.getters.authModalStatus,
     showCartModal: state => state.$store.getters.cartModalStatus,
     showFreeModal: state => state.$store.getters.freeModalStatus,
+    showGiftModal: state => state.$store.getters.showGiftModal,
     showSuccessModal: state => state.$store.getters.showSuccessModal,
     pageUrl: state => state.$router.currentRoute.path,
     isReady: (state) => state.$store.getters.isReady
