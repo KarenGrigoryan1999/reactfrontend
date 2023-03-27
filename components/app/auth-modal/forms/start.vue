@@ -1,6 +1,6 @@
 <template lang="pug">
   .auth-modal__group
-    a(href='http://localhost:7071/auth/external-authorization/1')
+    a(href='https://217.18.63.132:7070/auth/external-authorization/1')
       button.auth-modal__btn.-vk.btn_reset
         | Войти через
         span VK ID
