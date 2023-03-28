@@ -34,7 +34,7 @@ export default {
       this.lastNameError = false
       this.emailError = false
       this.passwordError = false
-      this.repeatedPassword = false
+      this.repeatedPasswordError = false
 
       if (!this.email) {
         this.emailError = true
