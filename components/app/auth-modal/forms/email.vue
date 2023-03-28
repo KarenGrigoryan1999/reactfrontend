@@ -6,6 +6,7 @@
       span.auth-modal__recovery-link(@click="$emit('change-type', 'recovery')") Забыл пароль?
     .auth-modal__error {{ error }}
     button.auth-modal__btn.-small.btn(@click="login") Войти
+    app-button(type="bordered" size="m" @click.native="registration")._btn Регистрация
 </template>
 
 <script>
@@ -54,6 +55,13 @@ export default {
           this.error = e.response.data.message
         })
     },
+    registration() {
+      this.setAuthModalStatus(false);
+      
+      setTimeout(() => {
+        this.setAuthModalStatus(true, 'registration');
+      }, 100);
+    }
   },
 }
 </script>

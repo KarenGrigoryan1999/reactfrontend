@@ -4,6 +4,7 @@
     input.auth-modal__input.input-modal(type="text" v-model="lastName" placeholder="Введи фамилию" :class="{error: lastNameError}")
     input.auth-modal__input.input-modal(type="text" v-model="email" placeholder="Введи почту" :class="{error: emailError}")
     input.auth-modal__input.input-modal(type="password" v-model="password" placeholder="Введи пароль" :class="{error: passwordError}")
+    input.auth-modal__input.input-modal(type="password" v-model="repeatedPassword" placeholder="повтори пароль" :class="{error: repeatedPasswordError}")
     .auth-modal__recovery-box
     .auth-modal__error {{ error }}
     button.auth-modal__btn.-small.btn(@click="registration") Регистрация
@@ -18,10 +19,12 @@ export default {
       lastName: "",
       email: "",
       password: "",
+      repeatedPassword: "",
       emailError: false,
       passwordError: false,
       nameError: false,
       lastNameError: false,
+      repeatedPasswordError: false,
       error: "",
     }
   },
@@ -31,6 +34,7 @@ export default {
       this.lastNameError = false
       this.emailError = false
       this.passwordError = false
+      this.repeatedPassword = false
 
       if (!this.email) {
         this.emailError = true
@@ -44,8 +48,11 @@ export default {
       if (!this.lastName) {
         this.lastNameError = true
       }
+      if (!this.repeatedPassword || this.repeatedPassword !== this.password) {
+        this.repeatedPasswordError = true
+      }
 
-      if (!this.email || !this.password || !this.name || !this.lastName) {
+      if (!this.email || !this.password || !this.repeatedPassword || !this.name || !this.lastName) {
         return
       }
 

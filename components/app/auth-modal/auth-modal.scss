@@ -115,7 +115,7 @@
   }
 
   &__btn {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding: 9px 84px;
     border-radius: 20px;
     font-size: 40px;
@@ -185,7 +185,7 @@
     padding: 10px 0;
     width: 100%;
     &:not(:first-child) {
-      margin-top: 50px;
+      margin-top: 30px;
     }
     &.error {
       border-color: red;
