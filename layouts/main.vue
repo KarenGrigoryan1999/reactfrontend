@@ -26,9 +26,10 @@ import CartModal from "../components/app/cart-modal/cart-modal";
 import FreeModal from "../components/app/free-modal/free-modal";
 import GiftModal from "../components/app/gift-modal/gift-modal";
 import SuccessModal from "../components/app/success-modal/success-modal"
+import UpButton from "../components/app/up-button/up-button"
 
 export default {
-  components: {CartModal, AppFooter, AppHeader, AppLoader, AuthModal, FreeModal, SuccessModal, GiftModal },
+  components: {CartModal, AppFooter, AppHeader, AppLoader, AuthModal, FreeModal, SuccessModal, GiftModal, UpButton },
   computed: {
     showAuthModal: state => state.$store.getters.authModalStatus,
     showCartModal: state => state.$store.getters.cartModalStatus,
