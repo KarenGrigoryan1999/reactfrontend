@@ -2,23 +2,6 @@ import path from 'path'
 import fs from 'fs'
 
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  server: {
-    host: '0.0.0.0',
-    port: 443,
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'certs', 'priv.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'cert.pem'))
-    }
-  },
-  publicRuntimeConfig: {
-    axios: {
-      // this is the url used on the server:
-      baseURL: "http://217.18.63.132:7071",
-      // this is the url used in the browser:
-      browserBaseURL: "https://217.18.63.132:7070",
-    },
-},
   head: {
     title: "badteacher.ru",
     mode: "server",
@@ -88,16 +71,16 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL:
       process.env.NODE_ENV === "development"
-        ? "https://localhost:7070"
-        : "https://217.18.63.132:7070",
+        ? "http://localhost:7070"
+        : "http://217.18.63.132:7070",
     rejectUnauthorized: false,
   },
 
   env: {
     VUE_APP_STORAGE_URL:
       process.env.NODE_ENV === "development"
-        ? "https://localhost:7070"
-        : "https://217.18.63.132:7070",
+        ? "http://localhost:7070"
+        : "http://217.18.63.132:7070",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
