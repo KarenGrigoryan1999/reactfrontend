@@ -2,6 +2,23 @@ import path from 'path'
 import fs from 'fs'
 
 export default {
+  // Global page headers: https://go.nuxtjs.dev/config-head
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+  },
+  publicRuntimeConfig: {
+    axios: {
+      // this is the url used on the server:
+      baseURL: process.env.NODE_ENV === "development"
+      ? "http://localhost:7070"
+      : "http://217.18.63.132:7070",
+      // this is the url used in the browser:
+      browserBaseURL: process.env.NODE_ENV === "development"
+      ? "http://localhost:7070"
+      : "http://217.18.63.132:7070",
+    },
+},
   head: {
     title: "badteacher.ru",
     mode: "server",
