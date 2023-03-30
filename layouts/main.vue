@@ -15,6 +15,7 @@
       transition(name="modal")
         success-modal(v-if="showSuccessModal")
       app-footer
+      up-button
 </template>
 <script>
 import AppHeader from "../components/app/app-header/app-header"
