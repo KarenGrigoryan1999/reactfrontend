@@ -11,8 +11,8 @@ export default {
     axios: {
       // this is the url used on the server:
       baseURL: process.env.NODE_ENV === "development"
-      ? "http://217.18.63.132:7070/api"
-      : "http://217.18.63.132:7070/api",
+      ? "http://localhost:7070/api"
+      : "http://localhost:7070/api",
       // this is the url used in the browser:
       browserBaseURL: process.env.NODE_ENV === "development"
       ? "https://217.18.63.132/api"
@@ -88,8 +88,8 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL:
       process.env.NODE_ENV === "development"
-        ? "http://217.18.63.132:7070/api"
-        : "http://217.18.63.132:7070/api",
+        ? "http://localhost:7070/api"
+        : "http://localhost:7070/api",
     rejectUnauthorized: false,
   },
 
