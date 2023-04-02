@@ -57,9 +57,9 @@ export default {
   },
   async created() {
     const checkCourse = await this.currentUser.courses.find(c => c.id === +this.courseId);
-
+    await this.increaseStatistic();
+    
     if (checkCourse?.id) {
-      await this.increaseStatistic();
       return await this.getCourse();
     }
     await this.$router.push("/404");
