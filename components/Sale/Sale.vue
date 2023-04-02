@@ -2,7 +2,20 @@
 section.sale 
   img.sale__decor-1(src="./img/sale-decor1.svg")
   img.sale__decor-3(src="./img/sale-decor3.svg")
-  .container 
+  .container
+    div.anim-wrapper
+      div(v-if="isAnimVisible")
+        lottie-vue-player(
+          :src="`https://lottie.host/4f0cec77-457b-4331-b060-ee1afa967d90/EEF5lqYLRj.json`"
+          :player-controls="false"
+          :loop="false"
+          :autoplay="true"
+          :showColorPicker="false"
+          style="width: 100%;")
+        div.right-anim-text
+          h2.caption.sale__caption {{ mainPageInfo.boysSpotTitle }}
+          p.sale__text {{ mainPageInfo.boysSpotText }}
+          button.btn.btn_reset.sale__btn {{ mainPageInfo.boysSpotButtonTitle }}
     .sale__inner 
       img.sale__image(src="./img/man.png")
       div.sale__spot-container
@@ -26,8 +39,13 @@ export default {
       required: true
     },
   },
+  data() {
+    return {
+      isAnimVisible: false
+    }
+  },
   mounted() {
-      window.addEventListener('scroll', function() {
+      window.addEventListener('scroll', () => {
       let element = document.querySelector('.anchor');
       if(element) {
         let position = element.getBoundingClientRect();
@@ -36,6 +54,13 @@ export default {
         const pinkSpot = document.querySelector('.sale__decor-1');
         const boy = document.querySelector('.sale__image');
         if(position.top >= 0 && position.bottom <= window.innerHeight) {
+          const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          this.isAnimVisible = true;
+          setTimeout(() => {
+            let rightAnimText = document.querySelector('.right-anim-text');
+            rightAnimText.style.opacity = '1';
+          }, 2000);
+
           spot.style.transform = 'scale(1)';
           pinkSpot.style.transform = 'scale(1)';
           boy.style.opacity = '1';
@@ -53,8 +78,42 @@ export default {
   position: relative;
   top: -25vh;
 }
+
+.anim-wrapper {
+  position: relative;
+  min-height: 700px;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.right-anim-text {
+  width: 400px;
+  position: absolute;
+  top: 35%;
+  right: 23%;
+  transition: all 0.5s;
+  opacity: 0;
+  text-align: center;
+
+  @media (max-width: 1550px) {
+    right: 20%;
+  }
+
+  @media (max-width: 1200px) {
+    top: 30%;
+    right: 16%;
+  }
+}
+
+.animation-wrapper {
+  display: none;
+}
+.vue-lottie-player {
+  background: transparent !important;
+}
 .sale {
-  margin-bottom: 200px;
   position: relative;
 
   &__spot-container {
@@ -174,10 +233,12 @@ export default {
     align-items: center;
     position: relative;
     min-height: 65vh;
+    display: none;
 
     @include tablet {
       padding-right: 100px;
       padding-left: 0;
+      display: block;
     }
 
     @include mobile {

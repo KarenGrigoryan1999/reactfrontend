@@ -44,7 +44,7 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/mixins.js" }, { src: "~/plugins/click-outside.directive.js", ssr: false }, { src: "~/plugins/vue-perfect-scrollbar.js", ssr: false }],
+  plugins: [{ src: "~/plugins/mixins.js" }, { src: "~/plugins/click-outside.directive.js", ssr: false }, { src: "~/plugins/vue-perfect-scrollbar.js", ssr: false }, { src: "~/plugins/vue-lottie-player.js", ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
