@@ -60,10 +60,16 @@ export default {
 
     if (checkCourse?.id) {
       return await this.getCourse();
+      return await this.increaseStatistic();
     }
     await this.$router.push("/404");
   },
   methods: {
+    async increaseStatistic() {
+      await this.$axios.put('/statistic', {
+        courseId: this.courseId
+      });
+    },
     async getCourse() {
       await this.$axios.get(`/courses/my/${this.courseId}`).then(r => {
         this.course = r.data;

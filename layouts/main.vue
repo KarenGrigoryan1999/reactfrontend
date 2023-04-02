@@ -40,6 +40,9 @@ export default {
     isReady: (state) => state.$store.getters.isReady
   },
   methods: {
+    async increaseStatistic() {
+      await this.$axios.put('/statistic');
+    },
     setLoaded() {
       setTimeout(() => {  
         this.$store.dispatch("set", {
@@ -50,6 +53,7 @@ export default {
     }
   },
   created() {
+    this.increaseStatistic();
     this.getCart();
   },
   mounted() {
