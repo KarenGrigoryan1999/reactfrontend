@@ -52,8 +52,8 @@ export default {
       }, 2000);
     }
   },
-  created() {
-    this.increaseStatistic();
+  async created() {
+    await this.increaseStatistic();
     this.getCart();
   },
   mounted() {
