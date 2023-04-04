@@ -78,10 +78,15 @@ export default {
         this.currentQuestionNumber -= 1;
         this.selectAnswer = this.test.questions[this.currentQuestionNumber].selectAnswer;
     },
-    completeTest() {
+    async completeTest() {
         this.test.questions[this.currentQuestionNumber].selectAnswer = this.selectAnswer;
         this.selectAnswer = null;
         this.isCompleted = true;
+        const response = await this.$axios.put(`/tests/check`, {
+            questions: this.test.questions
+        });
+
+        this.correctPointCount = response.data;
         this.test.questions.forEach((questionElement) => {
             const selected = questionElement[`answer_${questionElement.selectAnswer}`] || questionElement.selectAnswer;
             if(selected.toLowerCase() === questionElement.correct_answer.toLowerCase()) {

@@ -10,8 +10,8 @@ export default {
   name: "RecoveryAuth",
   data() {
     return {
-      email: "kolesov@kprod.agency",
-      password: "ZLguJlw2",
+      email: "",
+      password: "",
       emailError: false,
       passwordError: false,
       error: "",

@@ -14,8 +14,8 @@ export default {
   name: "EmailAuth",
   data() {
     return {
-      email: "kolesov@kprod.agency",
-      password: "Z9SdbneS",
+      email: "",
+      password: "",
       emailError: false,
       passwordError: false,
       error: "",
