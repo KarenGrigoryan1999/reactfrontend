@@ -23,6 +23,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1;
 
     &::after {
       right: -30px;
@@ -31,11 +32,16 @@
 
     @include minidesktop {
       margin-left: 50px;
+      position: absolute;
+      top: -221px;
+      right: 0;
+      height: 200px;
     }
 
     @include tablet {
       height: 300px;
       margin-bottom: 50px;
+      position: static;
     }
 
     @include mobile {
