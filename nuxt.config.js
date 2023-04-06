@@ -12,12 +12,12 @@ export default {
       },
       // this is the url used on the server:
       baseURL: process.env.NODE_ENV === "development"
-      ? "http://217.18.63.132:7070/api"
-      : "http://217.18.63.132:7070/api",
+      ? "http://badteachers.ru:7070/api"
+      : "http://badteachers.ru:7070/api",
       // this is the url used in the browser:
       browserBaseURL: process.env.NODE_ENV === "development"
-      ? "https://217.18.63.132/api"
-      : "https://217.18.63.132/api",
+      ? "https://badteachers.ru/api"
+      : "https://badteachers.ru/api",
     },
 },
   head: {
@@ -93,16 +93,16 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL:
       process.env.NODE_ENV === "development"
-        ? "http://217.18.63.132:7070/api"
-        : "http://217.18.63.132:7070/api",
+        ? "http://badteachers.ru:7070/api"
+        : "http://badteachers.ru:7070/api",
     rejectUnauthorized: false,
   },
 
   env: {
     VUE_APP_STORAGE_URL:
       process.env.NODE_ENV === "development"
-        ? "https://217.18.63.132/api"
-        : "https://217.18.63.132/api",
+        ? "https://badteachers.ru/api"
+        : "https://badteachers.ru/api",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
