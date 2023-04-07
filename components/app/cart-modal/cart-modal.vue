@@ -90,12 +90,13 @@ export default {
         })
       })
     },
-    pay() {
+    async pay() {
       if(this.isAuth) {
-        this.$axios.post('/payments', {
+        const redirectUrl = await this.$axios.post('/payments', {
           courses: this.list.map(element => element.id),
           promo: this.promoDiscount
         });
+        window.location.replace(redirectUrl.data.url);
       } else {
         this.setCartModalStatus(false);
         this.setAuthModalStatus(true);
