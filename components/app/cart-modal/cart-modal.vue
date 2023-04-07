@@ -92,7 +92,10 @@ export default {
     },
     pay() {
       if(this.isAuth) {
-        window.location.href = "https://tinkoff.ru";
+        this.$axios.post('/payments', {
+          courses: this.list.map(element => element.id),
+          promo: this.promoDiscount
+        });
       } else {
         this.setCartModalStatus(false);
         this.setAuthModalStatus(true);
