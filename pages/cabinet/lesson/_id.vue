@@ -29,14 +29,17 @@
         app-button(size="l", @click.native="openTestHandle", :spot="false") Да!
       .lesson__test-field(ref="testField")
         h1.lesson__test-title {{ question.question }}
-        test-variant(
-          v-for="i in [1, 2, 3, 4]",
-          :question="question && question[`answer_${i}`]",
-          :selectedAnswer="selectAnswer === i",
-          :isCorrect="isCorrect",
-          :number="i",
-          @selectAnswer="select"
-        )
+        template(v-if="question.answer_1")
+          test-variant(
+            v-for="i in [1, 2, 3, 4]",
+            :question="question && question[`answer_${i}`]",
+            :selectedAnswer="selectAnswer === i",
+            :isCorrect="isCorrect",
+            :number="i",
+            @selectAnswer="select"
+          )
+        template(v-if="!question.answer_1")
+          input.lesson__input-answer(v-model="inputAnsver" placeholder="введи свой ответ" :disabled="isCorrect !== null")
         p.lesson__answer-result.correct(v-if="isCorrect === true") Молодец! ответ верный
         p.lesson__answer-result.wrong(v-if="isCorrect === false") УПС.. ответ неверный :(
         app-button(
@@ -71,6 +74,7 @@ export default {
       lesson: {},
       question: {},
       selectAnswer: null,
+      inputAnsver: null,
       isCorrect: null,
       lessonVideo: null,
       nextLesson: null,
@@ -97,20 +101,25 @@ export default {
       this.selectAnswer = number
     },
     goNextLesson() {
-      this.$router.push(`/cabinet/lesson/${this.nextLesson}`)
+      if(!this.nextLesson) {
+        this.$router.push(`/cabinet`)
+      } else {
+        this.$router.push(`/cabinet/lesson/${this.nextLesson}`)
+      }
     },
     async askQuestion() {
       this.isCorrect =
         this.question.correct_answer ===
-        this.question[`answer_${this.selectAnswer}`]
+        this.question[`answer_${this.selectAnswer}`] || this.inputAnsver === this.question.correct_answer
       if (this.isCorrect) {
         const response = await this.$axios.put(`/lessons/${this.lessonId}`)
         this.nextLesson = response.data.nextLesson
       }
     },
     retryQuestion() {
-      this.isCorrect = null
-      this.selectAnswer = null
+      this.isCorrect = null;
+      this.selectAnswer = null;
+      this.inputAnsver = null;
     },
     openTestHandle() {
       this.$refs.testField.classList.add("showed")
@@ -176,6 +185,19 @@ export default {
     @include mobile {
       font-size: 6vw;
     }
+  }
+
+  &__input-answer {
+    font-family: '3Dumb';
+    font-size: 18px;
+    background: transparent;
+    width: 100%;
+    height: fit-content !important;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid silver;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   &__screen-wrapper {

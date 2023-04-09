@@ -25,6 +25,8 @@
                   ._tablet-buttons
                     app-button(size="l" type="white" @click.native="redirectToCourse(course.id)")._button Посмотреть курс
                     app-button(size="l" @click.native="addToCart(course.id)" v-if="isTextChanged")._button {{ showButtonText(course.id) }}
+          ._swiper-ctrl-btn.left(@click="prevSlide")
+            img(src="./img/arrow-left.svg")._swiper-ctrl-icon
 </template>
 
 <script>
@@ -72,6 +74,9 @@ export default {
   methods: {
     nextSlide() {
       this.swiper.slideNext(400)
+    },
+    prevSlide() {
+      this.swiper.slidePrev(400)
     },
     redirectToCourse(id) {
       this.$router.push(`/courses/${id}`)
