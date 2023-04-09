@@ -1,7 +1,7 @@
 .course-header {
   padding: 100px 0;
   @media (max-width: 767px) {
-    padding-top: 50px;
+    padding-top: 165px;
   }
 
   &__container {
@@ -69,21 +69,19 @@
 
   &__text {
     margin-bottom: 20px;
-    font-size: 64px;
-    line-height: 60px;
+    font-size: 2vw;
+    line-height: 100%;
+    margin-left: 3vw;
     color: $white;
     @media (max-width: 990px) {
-      font-size: 50px;
-      line-height: 50px;
+      font-size: 3vw;
       margin-bottom: 10px;
     }
     @media (max-width: 767px) {
-      font-size: 32px;
-      line-height: 1.4;
       margin-bottom: 5px;
     }
     @media (max-width: 479px) {
-      font-size: 26px;
+      font-size: 4vw;
     }
   }
 

@@ -84,24 +84,28 @@
       position: absolute;
       left: 10%;
       top: 21%;
+      max-width: 150px;
 
       @media (max-width: 1549px) {
-        left: 8%;
+        left: 9%;
         top: 21%;
       }
       @media (max-width: 1199px) {
         left: 9%;
         top: 20%;
+        max-width: 118px;
       }
       @media (max-width: 990px) {
         top: 21%;
-        left: 10%;
+        left: 11%;
+        max-width: 160px;
       }
       @media (max-width: 767px) {
         left: 9%;
       }
       @media (max-width: 510px) {
         top: 20%;
+        max-width: 118px;
       }
     }
 
@@ -127,7 +131,7 @@
 
       @media (max-width: 767px) {
         top: 16%;
-        right: 32.5%;
+        right: 33.5%;
       }
     }
 
@@ -142,12 +146,16 @@
 
       @media (max-width: 1549px) {
         top: 13.5%;
-        right: 4.5%;
+        right: 2.5%;
+      }
+
+      @media (max-width: 990px) {
+        right: 5.5%;
       }
 
       @media (max-width: 767px) {
         top: 12.5%;
-        right: 3.5%;
+        right: 4.5%;
       }
     }
   }
