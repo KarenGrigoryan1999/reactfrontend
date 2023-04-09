@@ -4,6 +4,11 @@
             <img src="../../../assets/img/illustrations/with-ballon-black.png" v-if="teacher.illustration_type === 'with-balloon'" />
             <img src="../../../assets/img/illustrations/car.png" v-if="teacher.illustration_type === 'car'" />
             <img src="../../../assets/img/illustrations/bubble.png" v-if="teacher.illustration_type === 'bubble'" />
+            <img src="../../../assets/img/illustrations/bubble-white.png" v-if="teacher.illustration_type === 'bubble-white'" />
+            <img src="../../../assets/img/illustrations/with-ballon-white.png" v-if="teacher.illustration_type === 'with-balloon-white'" />
+            <img src="../../../assets/img/illustrations/with-ballon-green.png" v-if="teacher.illustration_type === 'with-ballon-green'" />
+            <img src="../../../assets/img/illustrations/car-green.png" v-if="teacher.illustration_type === 'car-green'" />
+            <img src="../../../assets/img/illustrations/car-orange.png" v-if="teacher.illustration_type === 'car-orange'" />
         </div>
     </div>
 </template>
