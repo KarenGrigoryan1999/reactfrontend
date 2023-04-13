@@ -2,7 +2,6 @@
   .teacher-illustration
     ._container.container
       img(:src="filePath(teacher ? teacher.photos[2] : '')")
-      a(href="ya.ru" target="_blank" :class="teacher.illustration_type")._link
 </template>
 
 <script>
