@@ -14,7 +14,7 @@
             br/ курсов
         ._swiper-container
           ._swiper-ctrl-btn(@click="nextSlide")
-            img(src="./img/arrow-right.svg")._swiper-ctrl-icon
+            img(src="~/assets/img/slider/arrow-right.svg")._swiper-ctrl-icon
           swiper._swiper(:options="swiperOptions" ref="courses")
             SwiperSlide._swiper-slide(v-for="course in courses" :key="course.id" :data-id='course.id')
               app-tablet._tablet(:color="course.color")

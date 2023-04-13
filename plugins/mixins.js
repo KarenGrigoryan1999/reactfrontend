@@ -52,6 +52,14 @@ Vue.mixin({
         value: status,
       });
     },
+    setFreeCourseModalStatus(status) {
+      this.setBodyOverflow(status)
+
+      this.$store.dispatch("set", {
+        name: "freeCourseModalStatus",
+        value: status,
+      });
+    },
     setSuccessModalStatus(status) {
       this.setBodyOverflow(status)
 

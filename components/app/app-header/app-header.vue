@@ -16,7 +16,7 @@
       ._ctrl
         ._ctrl-group(v-if="!isAuth")
           app-button(type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
-          app-button(size="l" :spot="false")._btn Бесплатный курс
+          app-button(size="l" :spot="false" @click.native="setFreeCourseModalStatus(true)")._btn Бесплатный курс
         ._ctrl-group(v-else)
           ._user-menu(@click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
             ._user-avatar-box(:class="{'no-avatar': noAvatar}")
