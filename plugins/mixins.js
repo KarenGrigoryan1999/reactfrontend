@@ -60,6 +60,14 @@ Vue.mixin({
         value: status,
       });
     },
+    setCallModalStatus(status) {
+      this.setBodyOverflow(status)
+
+      this.$store.dispatch("set", {
+        name: "callModalStatus",
+        value: status,
+      });
+    },
     setSuccessModalStatus(status) {
       this.setBodyOverflow(status)
 

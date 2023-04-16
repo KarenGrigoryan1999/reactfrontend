@@ -76,6 +76,7 @@ export default {
       }, 1000);
       }).catch((e) => {
         this.error = true;
+        this.isLoading = false;
       });
     }
   }

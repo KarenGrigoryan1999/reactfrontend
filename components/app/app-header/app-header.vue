@@ -5,7 +5,7 @@
         img(src="@/assets/img/bt-logo.svg")._logo
       ._contacts(v-if="!isAuth")
         a._phone(:href="`tel:${formattedPhone}`") {{ phone }}
-        app-button(size="s" type="bordered") Перезвоните мне
+        app-button(size="s" type="bordered" @click.native="callMe") Перезвоните мне
       nav._nav
         ._nav-list
           nuxt-link._nav-link.-courses(to="/cabinet" v-if="isAuth") Мои курсы
@@ -61,6 +61,9 @@ export default {
     closeUserDropdown() {
       this.showUserDropdown = false
     },
+    callMe() {
+      this.setCallModalStatus(true);
+    }
   },
 }
 </script>
