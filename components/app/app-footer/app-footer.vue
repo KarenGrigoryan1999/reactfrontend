@@ -22,6 +22,7 @@
             img(src="./img/tg.svg" alt="Telegram")
           a.social__link(:href="whatsApp" target="_blank")
             img(src="./img/whatsapp.svg" alt="WhatsApp")
+      p._company-name ООО «Биванкеноби»
 </template>
 
 <script>
