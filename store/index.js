@@ -13,10 +13,12 @@ const createStore = () => {
       sale: 10,
       balance: 0,
       authModalStatus: false,
+      freeCourseModalStatus: false,
       cartModalStatus: false,
       freeModalStatus: false,
       showActivateFreeModal: false,
       showSuccessModal: false,
+      callModalStatus: false,
       showGiftModal: false,
       freeCourseId: 0,
       authModalType: "",
@@ -24,6 +26,7 @@ const createStore = () => {
       mainPageInfo: {},
       stages: [],
       isReady: false,
+      courses: [],
       smileColors: ['blue', 'green', 'purple', 'yellow']
     }),
     getters: {
@@ -34,10 +37,12 @@ const createStore = () => {
       vkontakte: state => state.vkontakte,
       telegram: state => state.telegram,
       whatsApp: state => state.whatsApp,
-      sale: state => state.sale,
+      sale: state => +state.sale,
       gift: state => state.gift,
       authModalStatus: state => state.authModalStatus,
+      freeCourseModalStatus: state => state.freeCourseModalStatus,
       cartModalStatus: state => state.cartModalStatus,
+      callModalStatus: state => state.callModalStatus,
       freeModalStatus: state => state.freeModalStatus,
       showActivateFreeModal: state => state.showActivateFreeModal,
       showSuccessModal: state => state.showSuccessModal,
@@ -48,6 +53,7 @@ const createStore = () => {
       mainPageInfo: state => state.mainPageInfo,
       isReady: state => state.isReady,
       balance: state => state.balance,
+      courses: state => state.courses,
       stages: state => state.stages.map((element, idx) => (
         {
           ...element,

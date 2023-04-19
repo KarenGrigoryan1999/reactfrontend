@@ -7,7 +7,7 @@
         ._elem
           ._call
             a._tel(:href="`tel:${formattedPhone}`") {{ phone }}
-            button._btn-tel(type="button") Перезвоните мне
+            button._btn-tel(type="button" @click="callMe") Перезвоните мне
           nuxt-link._link(to="/") правовая информация
           nuxt-link._link(to="#") договоры оферты
         ._item
@@ -34,6 +34,11 @@ export default {
     email: state => state.$store.getters.email,
     telegram: state => state.$store.getters.telegram,
     whatsApp: state => state.$store.getters.whatsApp,
+  },
+  methods: {
+    callMe() {
+      this.setCallModalStatus(true);
+    }
   }
 }
 </script>

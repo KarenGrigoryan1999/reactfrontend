@@ -54,7 +54,7 @@ export default {
     sale: state => state.$store.getters.sale / 100,
     oldPrice: state => state.list.reduce((acc, current) => acc + current.price, 0),
     salePrice: state => Math.max(state.oldPrice - (state.oldPrice * state.sale) - (state.promoDiscount ? (state.promoDiscount.type === 0 ? state.oldPrice * (state.promoDiscount.discount / 100) : state.promoDiscount.discount) : 0), 0),
-    isNeedSale: state => state.list.length >= 4 || state.promoDiscount,
+    isNeedSale: state => state.list.length >= 3 || state.promoDiscount,
     promoDiscountPrice: state => state.promoDiscount ? `${state.promoDiscount.discount}${state.promoDiscount.type === 0 ? '%' : ' рублей'}` : '',
   },
   async created() {

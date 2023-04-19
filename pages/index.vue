@@ -45,7 +45,12 @@ export default {
     
     return {
       courses: await $axios.get("/courses").then((r) => {
-        return r.data.map((t, i) => ({...t, active: i === 0}))
+        const response = r.data.map((t, i) => ({...t, active: i === 0}));
+        store.dispatch("set", {
+            name: 'courses',
+            value: response
+        });
+        return response
       }),
     }
   },

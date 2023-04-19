@@ -5,7 +5,7 @@
         img(src="@/assets/img/bt-logo.svg")._logo
       ._contacts(v-if="!isAuth")
         a._phone(:href="`tel:${formattedPhone}`") {{ phone }}
-        app-button(size="s" type="bordered") Перезвоните мне
+        app-button(size="s" type="bordered" @click.native="callMe") Перезвоните мне
       nav._nav
         ._nav-list
           nuxt-link._nav-link.-courses(to="/cabinet" v-if="isAuth") Мои курсы
@@ -16,7 +16,7 @@
       ._ctrl
         ._ctrl-group(v-if="!isAuth")
           app-button(type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
-          app-button(size="l" :spot="false")._btn Бесплатный курс
+          app-button(size="l" :spot="false" @click.native="setFreeCourseModalStatus(true)")._btn Бесплатный курс
         ._ctrl-group(v-else)
           ._user-menu(@click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
             ._user-avatar-box(:class="{'no-avatar': noAvatar}")
@@ -61,6 +61,9 @@ export default {
     closeUserDropdown() {
       this.showUserDropdown = false
     },
+    callMe() {
+      this.setCallModalStatus(true);
+    }
   },
 }
 </script>
