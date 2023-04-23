@@ -8,8 +8,8 @@
           ._call
             a._tel(:href="`tel:${formattedPhone}`") {{ phone }}
             button._btn-tel(type="button" @click="callMe") Перезвоните мне
-          nuxt-link._link(to="/") правовая информация
-          nuxt-link._link(to="#") договоры оферты
+          a._link(href="/docs/policy.pdf" target="_blank") правовая информация
+          a._link(href="/docs/agreement.pdf" target="_blank") договоры оферты
         ._item
           ._questions
             a._mail(:href="`mailto:${email}`") {{ email }}
