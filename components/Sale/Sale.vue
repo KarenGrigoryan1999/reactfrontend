@@ -4,12 +4,13 @@ section.sale
   img.sale__decor-3(src="./img/sale-decor3.svg")
   .container
     div.anim-wrapper
-      div(v-if="isAnimVisible")
+      div(:class="modifiers")
         lottie-vue-player(
+          ref="lottie"
           :src="`https://lottie.host/4f0cec77-457b-4331-b060-ee1afa967d90/EEF5lqYLRj.json`"
           :player-controls="false"
           :loop="false"
-          :autoplay="true"
+          :autoplay="false"
           :showColorPicker="false"
           style="width: 100%;")
         div.right-anim-text
@@ -44,6 +45,11 @@ export default {
       isAnimVisible: false
     }
   },
+  computed: {
+    modifiers: state => ([
+      !state.isAnimVisible && `invisible`,
+    ])
+  },
   mounted() {
       window.addEventListener('scroll', () => {
       let element = document.querySelector('.anchor');
@@ -54,18 +60,18 @@ export default {
         const pinkSpot = document.querySelector('.sale__decor-1');
         const boy = document.querySelector('.sale__image');
         if(position.top >= 0 && position.bottom <= window.innerHeight) {
-          const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
           this.isAnimVisible = true;
+          this.$refs.lottie.player.play();
           setTimeout(() => {
             let rightAnimText = document.querySelector('.right-anim-text');
             rightAnimText.style.opacity = '1';
-          }, 2000);
+          }, 1000);
 
           spot.style.transform = 'scale(1)';
           pinkSpot.style.transform = 'scale(1)';
           boy.style.opacity = '1';
           boy.style.transform = 'translatex(0)';
-          
+          //isAnimVisible
         }
     }
   });
@@ -77,6 +83,10 @@ export default {
 .anchor {
   position: relative;
   top: -25vh;
+}
+
+.invisible {
+  display: none;
 }
 
 .anim-wrapper {
