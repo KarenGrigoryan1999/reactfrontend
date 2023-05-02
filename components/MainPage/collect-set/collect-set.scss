@@ -187,6 +187,10 @@
     opacity: 0;
   }
 
+  &__price {
+    font-size: 28px;
+  }
+
   &__button {
     &:not(:first-child) {
       margin-top: 20px;
