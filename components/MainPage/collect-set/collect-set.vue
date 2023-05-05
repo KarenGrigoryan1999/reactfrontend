@@ -20,7 +20,7 @@
               app-tablet._tablet(:color="course.color")
                 ._tablet-content
                   ._tablet-name {{ course ? course.name : '' }}
-                    p._price 2500 руб
+                    p._price {{ course && course.price }} руб
                   img(:src="require(`~/assets/img/courses-theme-short/${course.theme}/1.svg`)")._decor-1
                   img(:src="require(`~/assets/img/courses-theme-short/${course.theme}/2.svg`)")._decor-2
                   ._tablet-buttons

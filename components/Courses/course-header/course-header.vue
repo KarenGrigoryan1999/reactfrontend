@@ -6,6 +6,7 @@
         img._girl(src="./img/girl-bag-plane.svg", alt="")
         ._info
           ._title {{ course ? course.name : '' }}
+          ._text.price Цена курса: {{ course && course.price }} руб
           ._text {{ course.lessons.length }} {{ declination(course.lessons.length, ["урок", "урока", "уроков"]) }}
           ._text Задания для практики
           ._text {{ course.description }}
