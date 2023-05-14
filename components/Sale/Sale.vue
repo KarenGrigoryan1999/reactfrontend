@@ -16,7 +16,7 @@ section.sale
         div.right-anim-text
           h2.caption.sale__caption {{ mainPageInfo.boysSpotTitle }}
           p.sale__text {{ mainPageInfo.boysSpotText }}
-          button.btn.btn_reset.sale__btn {{ mainPageInfo.boysSpotButtonTitle }}
+          button.btn.btn_reset.sale__btn(@click="goToLink") {{ mainPageInfo.boysSpotButtonTitle }}
     .sale__inner 
       img.sale__image(src="./img/man.png")
       div.sale__spot-container
@@ -49,6 +49,11 @@ export default {
     modifiers: state => ([
       !state.isAnimVisible && `invisible`,
     ])
+  },
+  methods: {
+    goToLink() {
+      window.location.href = this.mainPageInfo.boysSpotButtonLink;
+    }
   },
   mounted() {
       window.addEventListener('scroll', () => {
