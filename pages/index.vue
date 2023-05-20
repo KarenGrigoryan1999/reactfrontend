@@ -69,6 +69,9 @@ export default {
       return state.userCourses.reduce((acc, userCourseElement) => { return userCourseElement.id !== element.id ? acc : false}, true)
     })
   },
+  mounted() {
+
+  },
   beforeMount() {
     if(this.$route.query.code){
       const { code, state } = this.$route.query; 
@@ -91,7 +94,25 @@ export default {
 
     const email = this.$route.query["email"]
     const resetCode = this.$route.query["reset-code"]
-    if (email && resetCode) {
+    const activation = this.$route.query["activation"]
+    this.$store.dispatch("set", {
+            name: 'sent_code',
+            value: true,
+          });
+    if(activation && this.$store.getters.sent_code) {
+      this.$axios
+        .get(`/auth/activation/${activation}`)
+        .then(() => {
+          this.setAuthModalStatus(true, "recovery-success")
+        })
+        .catch(() => {
+          this.setAuthModalStatus(true, "recovery-error")
+        })
+        .finally(() => {
+          this.$router.replace("/")
+        })
+    }
+    if (email && resetCode && this.$store.getters.sent_code) {
       this.$axios
         .get(`/auth/reset-password/${email}/${resetCode}`)
         .then(() => {

@@ -27,6 +27,7 @@ const createStore = () => {
       stages: [],
       isReady: false,
       courses: [],
+      sent_code: false,
       smileColors: ['blue', 'green', 'purple', 'yellow']
     }),
     getters: {
@@ -54,6 +55,7 @@ const createStore = () => {
       isReady: state => state.isReady,
       balance: state => state.balance,
       courses: state => state.courses,
+      sent_code: state => state.sent_code,
       stages: state => state.stages.map((element, idx) => (
         {
           ...element,
