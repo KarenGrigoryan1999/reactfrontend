@@ -7,7 +7,7 @@ section.sale
       div(:class="modifiers")
         lottie-vue-player(
           ref="lottie"
-          :src="`https://lottie.host/4f0cec77-457b-4331-b060-ee1afa967d90/EEF5lqYLRj.json`"
+          :src="`/sale_boy.json`"
           :player-controls="false"
           :loop="false"
           :autoplay="false"
