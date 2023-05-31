@@ -10,7 +10,7 @@
               app-button(size="l" @click.native="close" :spot='false')._btn Ок
             template(v-if="!success")
               template(v-if="!isLoading")
-                h1 Заполни данные и мы отправим тебе перезвоним
+                h1 Заполни данные и мы обязательно тебе перезвоним
                 input._address-input.input-modal(placeholder="Как к тебе обращаться?" v-model="userData")
                 input._address-input.input-modal(placeholder="Номер телефона" v-model="phone" type="number")
                 p._error(v-if="error") Проверьте правильность заполненных данных!
