@@ -4,9 +4,9 @@
       ._heading Отвечаем на вопросы
       ._slider
         ._slider-inner
-          ._text.-left(@click="setAnswer(course.answer_1)") {{ course.question_1 }}
-          ._text.-center(@click="setAnswer(course.answer_2)") {{ course.question_2 }}
-          ._text.-right(@click="setAnswer(course.answer_3)") {{ course.question_3 }}
+          ._text.-left.cloud1(@click="setAnswer(course.answer_1)") {{ course.question_1 }}
+          ._text.-center.cloud2(@click="setAnswer(course.answer_2)") {{ course.question_2 }}
+          ._text.-right.cloud3(@click="setAnswer(course.answer_3)") {{ course.question_3 }}
           img._image(src="./img/school.png", alt="")
     transition(name="modal")
       ._modal(v-if="showModal")
