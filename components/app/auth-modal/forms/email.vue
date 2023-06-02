@@ -1,7 +1,7 @@
 <template lang="pug">
   .auth-modal__group
-    input.auth-modal__input.input-modal(type="text" v-model="email" placeholder="Введи почту" :class="{error: emailError}")
-    input.auth-modal__input.input-modal(type="password" v-model="password" placeholder="Введи пароль" :class="{error: passwordError}")
+    input.auth-modal__input.input-modal.basic-font(type="text" v-model="email" placeholder="Введи почту" :class="{error: emailError}")
+    input.auth-modal__input.input-modal.basic-font(type="password" v-model="password" placeholder="Введи пароль" :class="{error: passwordError}")
     .auth-modal__recovery-box
       span.auth-modal__recovery-link(@click="$emit('change-type', 'recovery')") Забыл пароль?
     .auth-modal__error {{ error }}

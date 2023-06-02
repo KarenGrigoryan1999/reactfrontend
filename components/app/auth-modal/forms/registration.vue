@@ -1,10 +1,10 @@
 <template lang="pug">
   .auth-modal__group
-    input.auth-modal__input.input-modal(type="text" v-model="name" placeholder="Введи имя" :class="{error: nameError}")
-    input.auth-modal__input.input-modal(type="text" v-model="lastName" placeholder="Введи фамилию" :class="{error: lastNameError}")
-    input.auth-modal__input.input-modal(type="text" v-model="email" placeholder="Введи почту" :class="{error: emailError}")
-    input.auth-modal__input.input-modal(type="password" v-model="password" placeholder="Введи пароль" :class="{error: passwordError}")
-    input.auth-modal__input.input-modal(type="password" v-model="repeatedPassword" placeholder="повтори пароль" :class="{error: repeatedPasswordError}")
+    input.auth-modal__input.input-modal.basic-font(type="text" v-model="name" placeholder="Введи имя" :class="{error: nameError}")
+    input.auth-modal__input.input-modal.basic-font(type="text" v-model="lastName" placeholder="Введи фамилию" :class="{error: lastNameError}")
+    input.auth-modal__input.input-modal.basic-font(type="text" v-model="email" placeholder="Введи почту" :class="{error: emailError}")
+    input.auth-modal__input.input-modal.basic-font(type="password" v-model="password" placeholder="Введи пароль" :class="{error: passwordError}")
+    input.auth-modal__input.input-modal.basic-font(type="password" v-model="repeatedPassword" placeholder="повтори пароль" :class="{error: repeatedPasswordError}")
     .auth-modal__recovery-box
     .auth-modal__error {{ error }}
     button.auth-modal__btn.-small.btn(@click="registration") Регистрация
