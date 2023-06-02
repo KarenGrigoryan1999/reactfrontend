@@ -91,7 +91,7 @@
         top: 21%;
       }
       @media (max-width: 1199px) {
-        left: 5%;
+        left: 9%;
         top: 20%;
         max-width: 118px;
       }
@@ -228,31 +228,4 @@
       background: #fff;
     }
   }
-}
-
-.cloud1 {
-  background: url('../questions/img/cloud1.svg');
-  background-position: center;
-  background-size: cover;
-  width: 155px;
-  height: 133px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 1199px) {
-    width: 154px;
-    max-width: none;
-  }
-  @media (max-width: 600px) {
-    width: 124px;
-    max-width: none;
-  }
-}
-
-.cloud2 {
-  background: url('../questions/img/cloud2.svg');
-}
-
-.cloud3 {
-  background: url('../questions/img/cloud3.svg');
 }
