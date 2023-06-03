@@ -5,7 +5,7 @@
         ._caption.caption
           span(v-for="letter in 'Collect your set'") {{ letter }}
         ._subtitle.subtitle Собери
-          br/  свой сет
+          br/  свой набор
       ._slider
         ._helper
           img(src="./img/helper-bg.svg")._helper-bg

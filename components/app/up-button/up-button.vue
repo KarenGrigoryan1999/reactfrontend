@@ -33,11 +33,12 @@ export default {
         bottom: 44px;
         right: 62px;
 
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         border: 3px solid #4E0087;
         background: url('../../../assets/img/up-button/up-icon.svg') white;
+        background-size: 40px;
         background-repeat: no-repeat;
         background-position: center;
 

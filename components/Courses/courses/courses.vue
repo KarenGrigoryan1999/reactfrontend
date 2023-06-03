@@ -34,7 +34,7 @@
           ._cabinet-name {{ course.cabinet }}
           ._btns
             nuxt-link(:to="`/courses/${course.id}`" tag="button").btn.btn_reset._btn Посмотреть курс
-            //button.btn.btn_reset._btn Добавить в корзину
+            button.btn.btn_reset._btn(@click="onAddToCart(course)") {{ cart.find((element) => element.courseId === course.id) ? 'Уже в корзине' : 'Добавить в корзину'}}
 </template>
 
 <script>
@@ -47,6 +47,19 @@ export default {
       required: true,
     },
   },
+  methods: {
+    onAddToCart(course) {
+      this.addToCart(course.id);
+    }
+  },
+  computed: {
+    cart() {
+      return this.$store.getters.cart;
+    },
+    cartButtonTitle() {
+      return this.cart.find((element) => element.courseId === course.id);
+    }
+  }
 }
 </script>
 <style lang="scss" src="./courses.scss"></style>
