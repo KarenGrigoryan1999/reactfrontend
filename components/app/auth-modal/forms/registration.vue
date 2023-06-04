@@ -64,13 +64,8 @@ export default {
             password: this.password,
           })
         .then(() => {
-          this.$auth
-            .loginWith("local", {
-              data: {
-                email: this.email,
-                password: this.password,
-              },
-            }).then(() => this.setSuccessModalStatus(true));
+          this.setAuthModalStatus(false, 'registration');
+          this.setSuccessRegistrationModalStatus(true);
         })
         .catch((e) => {
           if (e.response.data?.errors?.length) {

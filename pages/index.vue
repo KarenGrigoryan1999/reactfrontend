@@ -102,6 +102,9 @@ export default {
     if(activation && this.$store.getters.sent_code) {
       this.$axios
         .get(`/auth/activation/${activation}`)
+        .then(() => {
+          this.setSuccessModalStatus(true);
+        })
         .catch(() => {
           this.setAuthModalStatus(true, "recovery-error")
         })

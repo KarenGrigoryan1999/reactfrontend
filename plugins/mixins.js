@@ -68,6 +68,14 @@ Vue.mixin({
         value: status,
       });
     },
+    setSuccessRegistrationModalStatus(status) {
+      this.setBodyOverflow(status)
+
+      this.$store.dispatch("set", {
+        name: "showSuccessRegistrationModal",
+        value: status,
+      });
+    },
     setSuccessModalStatus(status) {
       this.setBodyOverflow(status)
 
