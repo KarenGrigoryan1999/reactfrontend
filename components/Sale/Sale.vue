@@ -76,13 +76,15 @@ export default {
           rightAnimText.style.opacity = '0';
           this.$refs.lottie.player.stop();
         }
-        if((position.top >= 0 && position.bottom <= window.innerHeight) || (position.bottom > 300 && position.bottom < 400)) {
+        if((position.top >= 0 && position.bottom <= window.innerHeight) || (position.bottom > 100 && position.bottom < 200)) {
           this.isAnimVisible = true;
-          this.$refs.lottie.player.play();
           setTimeout(() => {
-            rightAnimText.style.opacity = '1';
-            this.played = false;
-          }, 1000);
+            this.$refs.lottie.player.play();
+            setTimeout(() => {
+              rightAnimText.style.opacity = '1';
+              this.played = false;
+            }, 1000);
+          }, 3000);
 
           spot.style.transform = 'scale(1)';
           pinkSpot.style.transform = 'scale(1)';
