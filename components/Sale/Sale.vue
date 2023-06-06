@@ -4,6 +4,10 @@ section.sale
   img.sale__decor-3(src="./img/sale-decor3.svg")
   .container
     div.anim-wrapper
+      div.red-spot
+        h2.caption.sale__caption {{ mainPageInfo.boysSpotTitle }}
+        p.sale__text {{ mainPageInfo.boysSpotText }}
+        button.btn.btn_reset.sale__btn(@click="goToLink") {{ mainPageInfo.boysSpotButtonTitle }}
       div(:class="modifiers")
         lottie-vue-player(
           ref="lottie"
@@ -42,7 +46,8 @@ export default {
   },
   data() {
     return {
-      isAnimVisible: false
+      isAnimVisible: false,
+      played: false,
     }
   },
   computed: {
@@ -58,18 +63,25 @@ export default {
   mounted() {
       window.addEventListener('scroll', () => {
       let element = document.querySelector('.anchor');
-      if(element) {
+      let rightAnimText = document.querySelector('.right-anim-text');
+      console.log(this.played);
+      if(element && this.played === false) {
         let position = element.getBoundingClientRect();
 
         const spot = document.querySelector('.sale__spot-container');
         const pinkSpot = document.querySelector('.sale__decor-1');
         const boy = document.querySelector('.sale__image');
-        if(position.top >= 0 && position.bottom <= window.innerHeight) {
+        if(position.bottom > 100 && position.bottom < 200) {
+          this.played = true;
+          rightAnimText.style.opacity = '0';
+          this.$refs.lottie.player.stop();
+        }
+        if((position.top >= 0 && position.bottom <= window.innerHeight) || (position.bottom > 300 && position.bottom < 400)) {
           this.isAnimVisible = true;
           this.$refs.lottie.player.play();
           setTimeout(() => {
-            let rightAnimText = document.querySelector('.right-anim-text');
             rightAnimText.style.opacity = '1';
+            this.played = false;
           }, 1000);
 
           spot.style.transform = 'scale(1)';
@@ -92,6 +104,38 @@ export default {
 
 .invisible {
   display: none;
+}
+
+.red-spot {
+  background: url('../../assets/img/red-spot.png');
+  width: 1164px;
+  height: 1053px;
+  right: 0;
+  top: -100px;
+  position: absolute;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  * {
+    max-width: 40%;
+  }
+
+  @include laptop {
+    width: 1048px;
+    height: 1082px;
+    right: -78px;
+    top: -154px;
+  }
+
+  @media (max-width: 1199px) {
+    width: 840px;
+    height: 747px;
+    right: -60px;
+    top: -103px;
+  }
 }
 
 .anim-wrapper {

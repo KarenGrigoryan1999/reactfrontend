@@ -39,6 +39,12 @@
   }
 }
 
+@mixin laptop {
+  @media (max-width: (1549px)) {
+    @content;
+  }
+}
+
 @mixin mediumdesktop {
   @media (max-width: (1400px)) {
     @content;
