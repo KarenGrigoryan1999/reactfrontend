@@ -17,7 +17,7 @@
         ._ctrl-group(:class="{flex_block: isAuth}")
           app-button(v-if="!isAuth" type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
           app-button(size="l" :spot="false" @click.native="setFreeCourseModalStatus(true)")._btn Бесплатный курс
-          ._user-menu(@click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
+          ._user-menu(v-if="isAuth" @click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
             ._user-avatar-box(:class="{'no-avatar': noAvatar}")
               img(:src="avatar")._user-avatar
             transition(name="show-menu")
