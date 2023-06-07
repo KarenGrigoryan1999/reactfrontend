@@ -74,6 +74,7 @@ export default {
         if(position.bottom > 100 && position.bottom < 200) {
           this.played = true;
           rightAnimText.style.opacity = '0';
+          if(this.played === true)
           this.$refs.lottie.player.stop();
         }
         if((position.top >= 0 && position.bottom <= window.innerHeight) || (position.bottom > 100 && position.bottom < 200)) {
