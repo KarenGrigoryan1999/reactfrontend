@@ -33,7 +33,7 @@ export default {
   name: "Start",
   methods: {
     goToCourses() {
-      this.$router.push('/courses')
+      this.setFreeCourseModalStatus(true);
     }
   }
 }

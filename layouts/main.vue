@@ -17,7 +17,7 @@
       transition(name="modal")
         success-registration-modal(v-if="showSuccessRegistrationModal")
       transition(name="modal")
-        free-course-modal(v-if="showFreeCourseModal")
+        free-course-modal(v-if="showFreeCourseModal" :courseId="selectedCourse")
       transition(name="modal")
         call-modal(v-if="showCallModal")
       app-footer
@@ -48,6 +48,7 @@ export default {
     showSuccessModal: state => state.$store.getters.showSuccessModal,
     showSuccessRegistrationModal: state => state.$store.getters.showSuccessRegistrationModal,
     showFreeCourseModal: state => state.$store.getters.freeCourseModalStatus,
+    selectedCourse: state => state.$store.getters.selectedCourse,
     pageUrl: state => state.$router.currentRoute.path,
     isReady: (state) => state.$store.getters.isReady
   },
