@@ -73,6 +73,8 @@
 
   &__nav-list {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &__nav-link {
@@ -81,14 +83,16 @@
     line-height: 20px;
     transition: 0.3s;
     position: relative;
+    width: fit-content !important;
+    white-space: nowrap;
 
     @media (max-width: 1090px) {
       padding: 10px 0 20px 0;
-      width: calc(100% / 3);
       text-align: center;
     }
     @media (max-width: 479px) {
       font-size: 19px;
+      white-space: pre-wrap;
     }
 
     &::after {
@@ -155,7 +159,6 @@
 
   &__ctrl-group {
     display: flex;
-    align-items: center;
     margin-right: 30px;
 
     @media (max-width: 1280px) {
@@ -303,5 +306,6 @@
 }
 
 .flex_block {
+  align-items: center;
   flex-direction: row !important;
 }
