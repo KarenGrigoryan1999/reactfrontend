@@ -26,6 +26,7 @@
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
     @media (max-width: 990px) {
       bottom: 25px;
     }
