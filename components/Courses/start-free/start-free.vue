@@ -6,7 +6,7 @@
         img._decor-2(src="./img/start-free-decor2.svg", alt="")
         ._woman-box
           img._image(src="./img/woman-back.png", alt="")
-          a._link(@click="setFreeCourseModalStatus(true, course.id)") Начни курс бесплатно
+          a._link(@click="setFreeCourseModalStatus(true, course.id)") Начни урок бесплатно
 </template>
 
 <script>

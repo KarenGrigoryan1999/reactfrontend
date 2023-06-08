@@ -12,7 +12,7 @@
               ._item(v-for="item in list" :key="item.id")
                 ._item-name {{ item.name }}
                 div._flex-wrapper
-                  ._item-price {{ item.sale_price }}
+                  ._item-price {{ item.price }}
                   button._delete(@click="deleteCourse(item.id)")
                     img(src="../../../assets/img/cart/delete.png", alt="")
             ._footer
