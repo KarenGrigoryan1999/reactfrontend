@@ -47,6 +47,13 @@ import AppButton from "../../app/app-button/app-button";
 export default {
   name: "FreeCourseModal",
   components: {AppButton, AppTablet, Swiper, SwiperSlide },
+  props: {
+    courseId: {
+        type: Number,
+        required: false,
+        default: 0
+      }
+    },
   computed: {
     courses: state => state.$store.getters.courses,
     swiper: (state) => state.$refs.courses.$swiper,
@@ -72,6 +79,24 @@ export default {
         },
       },
       isTextChanged: true,
+    }
+  },
+  mounted: async function() {
+    await this.$axios.get("/courses").then((r) => {
+        const response = r.data.map((t, i) => ({...t, active: i === 0}));
+        this.$store.dispatch("set", {
+            name: 'courses',
+            value: response
+        });
+      })
+  },
+  watch: {
+    courses: function() {
+      for(let i = 0; i < this.courses.length; i++) {
+      if(this.courseId && this.courses[i].id === this.courseId) {
+          this.swiper.slideTo(i+1);
+      }
+    }
     }
   },
   methods: {

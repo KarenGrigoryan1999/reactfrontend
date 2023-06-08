@@ -85,7 +85,7 @@ export default {
               rightAnimText.style.opacity = '1';
               this.played = false;
             }, 1000);
-          }, 3000);
+          }, 2000);
 
           spot.style.transform = 'scale(1)';
           pinkSpot.style.transform = 'scale(1)';

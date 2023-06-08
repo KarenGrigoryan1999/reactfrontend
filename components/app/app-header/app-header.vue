@@ -3,22 +3,21 @@
     ._container.container
       nuxt-link._logo(to="/")
         img(src="@/assets/img/bt-logo.svg")._logo
-      ._contacts(v-if="!isAuth")
+      ._contacts
         a._phone(:href="`tel:${formattedPhone}`") {{ phone }}
         app-button(size="s" type="bordered" @click.native="callMe") Перезвоните мне
       nav._nav
         ._nav-list
           nuxt-link._nav-link.-courses(to="/cabinet" v-if="isAuth") Мои курсы
           nuxt-link._nav-link.-drop.-courses(to="/courses")
-            span._nav-link-dropdown-text Все курсы
+            span(:class="{'app_header__nav_link_dropdown_text': true}") Все курсы
           nuxt-link._nav-link.-teachers(to="/teachers") Преподаватели
           nuxt-link._nav-link.-shop(to="/shop") Магазин
       ._ctrl
-        ._ctrl-group(v-if="!isAuth")
-          app-button(type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
+        ._ctrl-group(:class="{flex_block: isAuth}")
+          app-button(v-if="!isAuth" type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
           app-button(size="l" :spot="false" @click.native="setFreeCourseModalStatus(true)")._btn Бесплатный курс
-        ._ctrl-group(v-else)
-          ._user-menu(@click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
+          ._user-menu(v-if="isAuth" @click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
             ._user-avatar-box(:class="{'no-avatar': noAvatar}")
               img(:src="avatar")._user-avatar
             transition(name="show-menu")

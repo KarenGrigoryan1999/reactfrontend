@@ -10,7 +10,7 @@
           ._text {{ course.lessons.length }} {{ declination(course.lessons.length, ["урок", "урока", "уроков"]) }}
           ._text Задания для практики
           ._text {{ course.description }}
-      button.btn.btn_reset._btn(v-if="showButton" @click="setFreeModalStatus(true, course.id)") Хочу попробовать
+      button.btn.btn_reset._btn(v-if="showButton" @click="setFreeCourseModalStatus(true, course.id)") Хочу попробовать
 </template>
 
 <script>

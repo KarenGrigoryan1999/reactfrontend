@@ -29,6 +29,7 @@ const createStore = () => {
       isReady: false,
       courses: [],
       sent_code: false,
+      selectedCourse: 0,
       smileColors: ['blue', 'green', 'purple', 'yellow']
     }),
     getters: {
@@ -41,6 +42,7 @@ const createStore = () => {
       whatsApp: state => state.whatsApp,
       sale: state => +state.sale,
       gift: state => state.gift,
+      selectedCourse: state => state.selectedCourse,
       authModalStatus: state => state.authModalStatus,
       freeCourseModalStatus: state => state.freeCourseModalStatus,
       cartModalStatus: state => state.cartModalStatus,
