@@ -8,7 +8,7 @@
         @click="setFreeCourseModalStatus(false)"
       )
       ._inner(ref="inner")
-        h3._title Бесплатный курс
+        h3._title Бесплатный урок
         ._container.container
             ._slider
                 ._swiper-container
