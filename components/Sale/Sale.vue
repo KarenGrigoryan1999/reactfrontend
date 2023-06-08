@@ -5,9 +5,9 @@ section.sale
   .container
     div.anim-wrapper
       div.red-spot
-        h2.caption.sale__caption {{ mainPageInfo.boysSpotTitle }}
-        p.sale__text {{ mainPageInfo.boysSpotText }}
-        button.btn.btn_reset.sale__btn(@click="goToLink") {{ mainPageInfo.boysSpotButtonTitle }}
+        h2.caption.sale__caption {{ mainPageInfo.boysRedSpotTitle }}
+        p.sale__text {{ mainPageInfo.boysRedSpotText }}
+        button.btn.btn_reset.sale__btn(@click="goToLink") {{ mainPageInfo.boysRedSpotButtonTitle }}
       div(:class="modifiers")
         lottie-vue-player(
           ref="lottie"
