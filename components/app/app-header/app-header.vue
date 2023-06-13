@@ -15,7 +15,7 @@
           nuxt-link._nav-link.-shop(to="/shop") Магазин
       ._ctrl
         ._ctrl-group(:class="{flex_block: isAuth}")
-          app-button(v-if="!isAuth" type="bordered" size="m" @click.native="setAuthModalStatus(true)")._btn Войти
+          app-button(v-if="!isAuth" type="bordered" size="m" @click.native="setAuthModalStatus(true, 'start')")._btn Войти
           app-button(size="l" :spot="false" @click.native="setFreeCourseModalStatus(true)")._btn Бесплатный урок
           ._user-menu(v-if="isAuth" @click="showUserDropdown = !showUserDropdown" v-click-outside="closeUserDropdown")
             ._user-avatar-box(:class="{'no-avatar': noAvatar}")

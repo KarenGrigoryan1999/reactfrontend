@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     id: state => state.$route.params.id,
-    showButton: (state) => state.currentUser ? !Boolean(state.currentUser.courses.find((element) => element.id === state.course.id)) : false
+    showButton: (state) => (state.currentUser ? !Boolean(state.currentUser.courses.find((element) => element.id === state.course.id)) : false) || !state.currentUser
   }
 }
 </script>
