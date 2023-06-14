@@ -50,6 +50,9 @@ export default {
       })
     },
     async getGift(item) {
+      if(!this.isAuth) {
+        return this.setAuthModalStatus(true, 'start');
+      }
       if(item.price > this.balance) {
         return this.setGiftModalStatus(true, null);
       }

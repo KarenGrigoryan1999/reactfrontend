@@ -99,7 +99,7 @@ export default {
         window.location.replace(redirectUrl.data.url);
       } else {
         this.setCartModalStatus(false);
-        this.setAuthModalStatus(true);
+        this.setAuthModalStatus(true, 'start');
       }
     },
     deleteCourse(id) {

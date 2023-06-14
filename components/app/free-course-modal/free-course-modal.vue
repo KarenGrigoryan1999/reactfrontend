@@ -112,7 +112,7 @@ export default {
             this.setFreeModalStatus(true, courseId);
         } else {
             this.setFreeCourseModalStatus(false);
-            this.setAuthModalStatus(true);
+            this.setAuthModalStatus(true, 'start');
         }
     }
   },
