@@ -1,6 +1,6 @@
 <template lang="pug">
   #teachers-page
-    Teachers(:teachers="teachers")
+    Teachers(:courses="courses")
 </template>
 
 <script>
@@ -17,14 +17,14 @@ export default {
     })
 
     return {
-      teachers: await $axios.get("/teachers").then((r) => {
+      courses: await $axios.get("/courses").then((r) => {
         return r.data
       }),
     }
   },
   data() {
     return {
-      teachers: [],
+      courses: [],
     }
   },
 }
