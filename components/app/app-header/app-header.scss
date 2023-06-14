@@ -285,10 +285,12 @@
   }
 }
 
-.nuxt-link-active::after {
-  content: '123';
+.nuxt-link-exact-active::after {
+  content: '';
   width: 100%;
-  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
 }
 
 .show-menu-enter-active,
