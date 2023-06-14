@@ -34,11 +34,7 @@ export default {
       required: true
     },
   },
-  data() {
-    return {
-      teachers: [],
-    }
-  },
+  teachers: [],
   mounted() {
     this.teachers = [];
   },
