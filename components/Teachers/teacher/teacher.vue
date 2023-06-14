@@ -52,7 +52,7 @@ export default {
   mounted() {
     this.course = this.teacher.courses.find(element => element.id === parseInt(this.courseId, 10));
     if(this.course && this.teacher.courses[0].id !== this.course.id) {
-      this.photoId = 1;
+      this.photoId = this.teacher.photos.length > 0 ? 1 : 0;
     }else{
       this.photoId = 0;
     }

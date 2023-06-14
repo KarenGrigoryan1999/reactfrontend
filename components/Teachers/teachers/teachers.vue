@@ -42,7 +42,7 @@ export default {
     getPhotoIndex(teacher, courseIndex) {
       if(courseIndex === 0) this.teachers = [];
       if(this.teachers.includes(teacher.id)) {
-        return teacher.photos[1];
+        return teacher.photos[teacher.photos.length > 0 ? 1 : 0];
       }else{
         this.teachers.push(teacher.id);
         return teacher.photos[0];
