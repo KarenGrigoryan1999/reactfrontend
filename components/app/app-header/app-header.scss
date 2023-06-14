@@ -285,6 +285,12 @@
   }
 }
 
+.nuxt-link-active::after {
+  content: '123';
+  width: 100%;
+  position: absolute;
+}
+
 .show-menu-enter-active,
 .show-menu-leave-active {
   transition: 0.7s;
