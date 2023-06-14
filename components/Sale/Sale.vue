@@ -67,7 +67,6 @@ export default {
       console.log(this.played);
       if(element && this.played === false) {
         let position = element.getBoundingClientRect();
-        let timer;
 
         const spot = document.querySelector('.sale__spot-container');
         const pinkSpot = document.querySelector('.sale__decor-1');
@@ -75,17 +74,14 @@ export default {
         if(position.bottom > 10 && position.bottom < 50) {
           this.played = true;
           rightAnimText.style.opacity = '0';
-          clearTimeout(timer);
           if(this.played === true)
           this.$refs.lottie.player.stop();
         }
         if((position.top >= 0 && position.bottom <= window.innerHeight) || (position.bottom > 100 && position.bottom < 200)) {
           this.isAnimVisible = true;
           setTimeout(() => {
-            rightAnimText.style.opacity = '0';
-            clearTimeout(timer);
             this.$refs.lottie.player.play();
-            timer = setTimeout(() => {
+            setTimeout(() => {
               rightAnimText.style.opacity = '1';
               this.played = false;
             }, 1000);
