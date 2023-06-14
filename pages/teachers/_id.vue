@@ -1,6 +1,6 @@
 <template lang="pug">
   #teacher-page
-    Teacher(:teacher="teacher")
+    Teacher(:teacher="teacher" :courseId="$route.query.course")
     teacher-illustration(:teacher="teacher")
     teacher-course-link(:teacher="teacher")
 </template>

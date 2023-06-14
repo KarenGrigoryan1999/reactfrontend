@@ -2,8 +2,8 @@
   section.teacher
     ._container.container
       ._top
-        ._caption.caption(:style="{color: teacher.courses[0].color}") {{ teacher.courses[0].slang_name_alternative }}
-        ._subtitle.subtitle(:style="{color: teacher.courses[0].color}") {{ teacher.courses[0].slang_name }}
+        ._caption.caption(:style="{color: (course || teacher.courses[0]).color}") {{ (course || teacher.courses[0]).slang_name_alternative }}
+        ._subtitle.subtitle(:style="{color: (course || teacher.courses[0]).color}") {{ (course || teacher.courses[0]).slang_name }}
       ._body
         ._left
           ._link {{ teacher.name }}
@@ -14,7 +14,7 @@
               ._text {{ fact }}
         ._image-box(@click="showVideo = true")
           img._image-mask(src="./img/teacher-video-mask.png")
-          img._video(:src="filePath(teacher ? teacher.photos[0] : '')")
+          img._video(:src="filePath(teacher ? teacher.photos[photoId] : '')")
     transition(name="modal")
       ._video-modal(v-if="showVideo")
         ._video-wrap(@click.stop="showVideo = false")
@@ -33,16 +33,30 @@ export default {
       default: () => ({}),
       required: true,
     },
+    courseId: {
+      type: String,
+      required: false,
+    }
   },
   data() {
     return {
-      showVideo: false
+      showVideo: false,
+      course: null,
+      photoId: 0,
     }
   },
   computed: {
     facts: (state) => state.teacher.text.split("\n"),
     video: state => state.filePath(state.teacher.video[0])
   },
+  mounted() {
+    this.course = this.teacher.courses.find(element => element.id === parseInt(this.courseId, 10));
+    if(this.course && this.teacher.courses[0].id !== this.course.id) {
+      this.photoId = 1;
+    }else{
+      this.photoId = 0;
+    }
+  }
 }
 </script>
 

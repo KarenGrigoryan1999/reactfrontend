@@ -18,7 +18,7 @@
             span s
         ._subtitle.subtitle Наши преподаватели
       ._list
-        nuxt-link._teacher(v-for="(course, courseIndex) in courses" :key="course.id" :to="`/teachers/${course.teachers[0].id}`")
+        nuxt-link._teacher(v-for="(course, courseIndex) in courses" :key="course.id" :to="`/teachers/${course.teachers[0].id}?course=${course.id}`")
           img._teacher-photo(:src="filePath(course ? getPhotoIndex(course.teachers[0], courseIndex) : '')", alt="")
           ._teacher-course(:style="{color: course.color}") {{ course.name }}
           ._teacher-name {{ course.teachers[0].name }}
@@ -36,14 +36,15 @@ export default {
   },
   data() {
     return {
-      teachers:[],
+      teachers: [],
     }
   },
   mounted() {
     this.teachers = [];
   },
   methods: {
-    getPhotoIndex(teacher) {
+    getPhotoIndex(teacher, courseIndex) {
+      if(courseIndex === 0) this.teachers = [];
       if(this.teachers.includes(teacher.id)) {
         return teacher.photos[1];
       }else{
