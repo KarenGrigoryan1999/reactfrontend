@@ -107,10 +107,6 @@ button {
   }
 }
 
-.btn_reset {
-
-}
-
 .btn {
   background-color: $purple;
   text-transform: uppercase;
@@ -278,6 +274,11 @@ button {
   right: 10px;
   top: 10px;
   cursor: pointer;
+  @media (max-width: 700px) {
+    top: -90px;
+    right: auto;
+    transform: rotate(-45deg);
+  }
 }
 
 .hidden {

@@ -30,8 +30,6 @@ Vue.mixin({
         ]
     },
     setAuthModalStatus(status, type = "") {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "authModalStatus",
         value: status,
@@ -45,8 +43,6 @@ Vue.mixin({
       }
     },
     setCartModalStatus(status) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "cartModalStatus",
         value: status,
@@ -57,48 +53,36 @@ Vue.mixin({
         name: "selectedCourse",
         value: courseId || 0,
       });
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "freeCourseModalStatus",
         value: status,
       });
     },
     setCallModalStatus(status) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "callModalStatus",
         value: status,
       });
     },
     setSuccessRegistrationModalStatus(status) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "showSuccessRegistrationModal",
         value: status,
       });
     },
     setSuccessModalStatus(status) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "showSuccessModal",
         value: status,
       });
     },
     setActivateFreeModal(status) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "showActivateFreeModal",
         value: status,
       });
     },
     setFreeModalStatus(status, id = 0) {
-      this.setBodyOverflow(status)
-
       this.$store.dispatch("set", {
         name: "freeModalStatus",
         value: status,
@@ -110,7 +94,6 @@ Vue.mixin({
       });
     },
     setGiftModalStatus(status, gift) {
-      this.setBodyOverflow(status)
       this.$store.dispatch("set", {
         name: "showGiftModal",
         value: status,
@@ -200,7 +183,7 @@ Vue.mixin({
       clone.style.transition = 'all 2s';
       clone.style.zIndex = '2';
       layout.appendChild(clone);
-      
+
       setTimeout(() => {
         const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         if(width >= 600){

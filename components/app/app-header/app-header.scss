@@ -287,7 +287,7 @@
 
 .nuxt-link-exact-active::after {
   content: '';
-  width: 100%;
+  width: 100px;
   background-size: contain;
   background-repeat: no-repeat;
   margin: 0 auto;
