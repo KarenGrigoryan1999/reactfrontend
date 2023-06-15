@@ -83,6 +83,7 @@ export default {
             this.$refs.lottie.player.play();
             setTimeout(() => {
               rightAnimText.style.opacity = '1';
+              this.$refs.lottie.speed = 5;
               this.played = false;
             }, 1000);
           }, 1000);

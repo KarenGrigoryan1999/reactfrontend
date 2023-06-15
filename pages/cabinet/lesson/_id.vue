@@ -94,7 +94,7 @@ export default {
   mounted() {
     document
       .querySelector(".lesson__video")
-      .addEventListener("ended", this.hideVideo, false)
+      .addEventListener("ended", this.hideVideo, false);
   },
   methods: {
     select(number) {
