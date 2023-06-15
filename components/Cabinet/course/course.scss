@@ -235,3 +235,9 @@
     background-image: url('../../../assets/img/lessons/arrow.svg');
   }
 }
+
+.free {
+  &::before {
+    background-image: url('../../../assets/img/lessons/free.png');
+  }
+}
