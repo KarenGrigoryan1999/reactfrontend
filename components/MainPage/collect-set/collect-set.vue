@@ -15,7 +15,7 @@
         ._swiper-container
           ._swiper-ctrl-btn(@click="nextSlide" v-if="isRightButtonVisible")
             img(src="~/assets/img/slider/arrow-right.svg")._swiper-ctrl-icon
-          swiper._swiper(:options="swiperOptions" ref="courses" @reachEnd="sliderEnd" @reachBeginning="sliderBeginning" @progress="sliderProgress")
+          swiper._swiper(:options="swiperOptions" ref="courses" @progress="sliderProgress")
             SwiperSlide._swiper-slide(v-for="course in courses" :key="course.id" :data-id='course.id')
               app-tablet._tablet(:color="course.color")
                 ._tablet-content

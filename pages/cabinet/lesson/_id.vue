@@ -30,14 +30,15 @@
       .lesson__test-field(ref="testField")
         h1.lesson__test-title {{ question.question }}
         template(v-if="question.answer_1")
-          test-variant(
-            v-for="i in [1, 2, 3, 4]",
-            :question="question && question[`answer_${i}`]",
-            :selectedAnswer="selectAnswer === i",
-            :isCorrect="isCorrect",
-            :number="i",
-            @selectAnswer="select"
-          )
+          template(v-for="i in [1, 2, 3, 4]")
+            test-variant(
+              v-if="question[`answer_${i}`] !== ''"
+              :question="question && question[`answer_${i}`]",
+              :selectedAnswer="selectAnswer === i",
+              :isCorrect="isCorrect",
+              :number="i",
+              @selectAnswer="select"
+            )
         template(v-if="!question.answer_1")
           input.lesson__input-answer(v-model="inputAnsver" placeholder="введи свой ответ" :disabled="isCorrect !== null")
         p.lesson__answer-result.correct(v-if="isCorrect === true") Молодец! ответ верный

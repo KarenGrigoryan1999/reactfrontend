@@ -96,7 +96,7 @@ export default {
     courses: function() {
       for(let i = 0; i < this.courses.length; i++) {
       if(this.courseId && this.courses[i].id === this.courseId) {
-          this.swiper.slideTo(i+1);
+          this.swiper.slideTo(i);
       }
     }
     }
