@@ -13,9 +13,9 @@
             br/ покупке от 3х
             br/ курсов
         ._swiper-container
-          ._swiper-ctrl-btn(@click="nextSlide")
+          ._swiper-ctrl-btn(@click="nextSlide" v-if="isRightButtonVisible")
             img(src="~/assets/img/slider/arrow-right.svg")._swiper-ctrl-icon
-          swiper._swiper(:options="swiperOptions" ref="courses")
+          swiper._swiper(:options="swiperOptions" ref="courses" @reachEnd="sliderEnd" @reachBeginning="sliderBeginning" @progress="sliderProgress")
             SwiperSlide._swiper-slide(v-for="course in courses" :key="course.id" :data-id='course.id')
               app-tablet._tablet(:color="course.color")
                 ._tablet-content
@@ -26,7 +26,7 @@
                   ._tablet-buttons
                     app-button(size="l" type="white" @click.native="redirectToCourse(course.id)")._button Посмотреть курс
                     app-button(size="l" @click.native="addToCart(course.id)" v-if="isTextChanged")._button {{ showButtonText(course.id) }}
-          ._swiper-ctrl-btn.left(@click="prevSlide")
+          ._swiper-ctrl-btn.left(@click="prevSlide" v-if="isLeftButtonVisible")
             img(src="./img/arrow-left.svg")._swiper-ctrl-icon
 </template>
 
@@ -50,7 +50,7 @@ export default {
     return {
       swiperOptions: {
         spaceBetween: 30,
-        loop: true,
+        loop: false,
         breakpoints: {
           0: {
             slidesPerView: 1,
@@ -66,13 +66,30 @@ export default {
           }
         },
       },
-      isTextChanged: true
+      isTextChanged: true,
+      isRightButtonVisible: true,
+      isLeftButtonVisible: true,
     }
   },
   computed: {
     swiper: (state) => state.$refs.courses.$swiper,
   },
+  mounted() {
+    this.sliderProgress(this.swiper);
+  },
   methods: {
+    sliderProgress(ar) {
+      if(ar.progress === 1) {
+        this.isRightButtonVisible = false;
+        this.isLeftButtonVisible = true;
+      } else if(!ar.progress) {
+        this.isLeftButtonVisible = false;
+        this.isRightButtonVisible = true;
+      } else {
+        this.isLeftButtonVisible = true;
+        this.isRightButtonVisible = true;
+      }
+    },
     nextSlide() {
       this.swiper.slideNext(400)
     },

@@ -12,12 +12,12 @@
         ._container.container
             ._slider
                 ._swiper-container
-                    ._swiper-ctrl-btn(@click="nextSlide")
+                    ._swiper-ctrl-btn(@click="nextSlide" v-if="isRightButtonVisible")
                         img(src="~/assets/img/slider/arrow-right.svg")._swiper-ctrl-icon
-                    swiper._swiper(:options="swiperOptions" ref="courses")
+                    swiper._swiper(:options="swiperOptions" ref="courses" @progress="sliderProgress")
                         SwiperSlide._swiper-slide(
-                            v-for="course in courses",
-                            :key="course.id",
+                            v-for="course in courses"
+                            :key="course.id"
                             :data-id="course.id"
                         )
                             app-tablet._tablet(:color="course.color")
@@ -35,7 +35,7 @@
                                             type="white",
                                             @click.native="activate(course.id)"
                                         ) Активировать курс
-                    ._swiper-ctrl-btn.left(@click="prevSlide")
+                    ._swiper-ctrl-btn.left(@click="prevSlide" v-if="isLeftButtonVisible")
                         img(src="~/assets/img/slider/arrow-left.svg")._swiper-ctrl-icon
 </template>
   
@@ -62,7 +62,6 @@ export default {
     return {
       swiperOptions: {
         spaceBetween: 30,
-        loop: true,
         breakpoints: {
           0: {
             slidesPerView: 1,
@@ -79,6 +78,8 @@ export default {
         },
       },
       isTextChanged: true,
+      isRightButtonVisible: true,
+      isLeftButtonVisible: true,
     }
   },
   mounted: async function() {
@@ -89,6 +90,7 @@ export default {
             value: response
         });
       })
+    this.sliderProgress(this.swiper);
   },
   watch: {
     courses: function() {
@@ -100,6 +102,18 @@ export default {
     }
   },
   methods: {
+    sliderProgress(swiper) {
+      if(swiper.progress === 1) {
+        this.isRightButtonVisible = false;
+        this.isLeftButtonVisible = true;
+      } else if(!swiper.progress) {
+        this.isLeftButtonVisible = false;
+        this.isRightButtonVisible = true;
+      } else {
+        this.isLeftButtonVisible = true;
+        this.isRightButtonVisible = true;
+      }
+    },
     nextSlide() {
       this.swiper.slideNext(400)
     },
