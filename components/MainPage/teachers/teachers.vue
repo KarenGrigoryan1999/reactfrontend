@@ -33,7 +33,7 @@
         ._video-wrap(@click.stop="showVideo = false")
           ._video-content
             ._video-close Закрыть окно
-            video._video-player(preload="true" autoplay @click="playVideo" controls controlsList="nodownload")
+            video._video-player(preload="true" autoplay @click="playVideo($event)" controls controlsList="nodownload")
               source(:src="video" type="video/mp4")
 </template>
 
@@ -189,6 +189,9 @@ export default {
     }
   },
   methods: {
+    playVideo(event) {
+      event.stopPropagation();
+    },
     chooseCourse(course) {
       this.coursesList.map((t) => (t.active = false))
       course.active = true
