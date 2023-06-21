@@ -1,14 +1,7 @@
 <template>
     <div class="picture-link__wrapper">
         <div class="picture-link" @click="goToCourse">
-            <img src="../../../assets/img/illustrations/with-ballon-black.png" v-if="teacher.illustration_type === 'with-balloon'" />
-            <img src="../../../assets/img/illustrations/car.png" v-if="teacher.illustration_type === 'car'" />
-            <img src="../../../assets/img/illustrations/bubble.png" v-if="teacher.illustration_type === 'bubble'" />
-            <img src="../../../assets/img/illustrations/bubble-white.png" v-if="teacher.illustration_type === 'bubble-white'" />
-            <img src="../../../assets/img/illustrations/with-ballon-white.png" v-if="teacher.illustration_type === 'with-balloon-white'" />
-            <img src="../../../assets/img/illustrations/with-ballon-green.png" v-if="teacher.illustration_type === 'with-ballon-green'" />
-            <img src="../../../assets/img/illustrations/car-green.png" v-if="teacher.illustration_type === 'car-green'" />
-            <img src="../../../assets/img/illustrations/car-orange.png" v-if="teacher.illustration_type === 'car-orange'" />
+            <img :src="filePath(illustration)" />
         </div>
     </div>
 </template>
@@ -20,12 +13,17 @@ export default {
             type: Object,
             required: true,
             default: []
-        }
+        },
+        illustration: '',
     },
     methods: {
         goToCourse() {
             this.$router.push(`/courses/${this.teacher.courses[0].id}`);
         }
+    },
+    async mounted() {
+        const illustration = await this.$axios.get(`/illustrations/type/${this.teacher.illustration_type}`);
+        this.illustration = illustration.data.photo[0];
     }
 }
 </script>

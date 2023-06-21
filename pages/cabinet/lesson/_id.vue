@@ -192,11 +192,12 @@ export default {
     font-family: '3Dumb';
     font-size: 18px;
     background: transparent;
-    width: 100%;
+    width: 95% !important;
     height: fit-content !important;
     outline: none;
     border: 0;
     border-bottom: 1px solid silver;
+    margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
   }
