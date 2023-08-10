@@ -109,9 +109,10 @@ export default {
       }
     },
     async askQuestion() {
+      console.log(this.question[`answer_${this.selectAnswer}`], this.question.correct_answer)
       this.isCorrect =
-        this.question.correct_answer ===
-        this.question[`answer_${this.selectAnswer}`] || this.inputAnsver === this.question.correct_answer
+        this.question.correct_answer.trim() ===
+        this.question[`answer_${this.selectAnswer}`].trim() || this.inputAnsver === this.question.correct_answer.trim()
       if (this.isCorrect) {
         const response = await this.$axios.put(`/lessons/${this.lessonId}`)
         this.nextLesson = response.data.nextLesson
