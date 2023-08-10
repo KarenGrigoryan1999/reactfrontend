@@ -168,6 +168,8 @@
     cursor: pointer;
     position: relative;
     flex: none;
+
+    max-width: fit-content;
     @media (max-width: 1549px) {
       font-size: 36px;
     }
