@@ -8,7 +8,7 @@
         ._heading.about-elem(:style="courseNameStyles") {{ course.name }}
         ._info {{lessonsCompleted}}/{{ lessonsCount }} уроков
         perfect-scrollbar._list(tag="ul" :options="{wheelPropagation: false}")
-          nuxt-link._item(v-for="(lesson, idx) in course.lessons" :key="lesson.id + lesson.name" :class="{passed: idx + 1 <= lessonsCompleted, current: idx === lessonsCompleted, free: lesson.free}" tag="li" :to="`/cabinet/lesson/${lesson.id}`")
+          nuxt-link._item(v-for="(lesson, idx) in course.lessons" v-if="!course.isActivated && !lesson.free" :key="lesson.id + lesson.name" :class="{passed: idx + 1 <= lessonsCompleted, current: idx === lessonsCompleted, free: lesson.free}" tag="li" :to="`/cabinet/lesson/${lesson.id}`")
             span._link {{ lesson.name }}
           nuxt-link._item.test(v-for="(test, idx) in course.tests" :key="test.id + test.name" tag="li" :to="`/cabinet/tests/${test.id}`")
             span._link {{ test.name }}

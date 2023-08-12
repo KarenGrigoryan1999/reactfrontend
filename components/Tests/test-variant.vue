@@ -59,7 +59,7 @@
     }
 
     .question-field__text {
-        font-size: 4vw;
+        font-size: 2vw;
     }
     .correct {
     color: #219653;
@@ -68,9 +68,9 @@
     color: #EB5757;
   }
 
-  @media (max-width: 788px) {
+  @media (max-width: 588px) {
     .question-field__text {
-        font-size: 9vw;
+        font-size: 4vw;
     }
   }
   </style>
