@@ -182,10 +182,10 @@ export default {
   }
 
   &__test-title {
-    font-size: 3vw;
+    font-size: 20px;
 
     @include mobile {
-      font-size: 6vw;
+      font-size: 18px;
     }
   }
 
@@ -223,6 +223,10 @@ export default {
     top: 3vw;
     border-radius: 4vw;
     overflow: hidden;
+
+    video {
+      width: 100%;
+    }
 
     * {
       height: 100%;
