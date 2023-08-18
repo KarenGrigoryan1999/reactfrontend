@@ -109,7 +109,7 @@ export default {
       }
     },
     async askQuestion() {
-      console.log(this.question[`answer_${this.selectAnswer}`], this.question.correct_answer)
+      console.log(this.inputAnsver, this.question.correct_answer)
       this.isCorrect =
         this.question.correct_answer.trim() ===
         this.question[`answer_${this.selectAnswer}`].trim() || this.inputAnsver === this.question.correct_answer.trim()
