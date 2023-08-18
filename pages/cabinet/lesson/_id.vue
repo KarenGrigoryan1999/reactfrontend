@@ -112,7 +112,7 @@ export default {
       console.log(this.inputAnsver, this.question.correct_answer)
       this.isCorrect =
         this.question.correct_answer.trim() ===
-        this.question[`answer_${this.selectAnswer}`].trim() || this.inputAnsver === this.question.correct_answer.trim()
+        this.question[`answer_${this.selectAnswer}`]?.trim() || this.inputAnsver === this.question.correct_answer.trim()
       if (this.isCorrect) {
         const response = await this.$axios.put(`/lessons/${this.lessonId}`)
         this.nextLesson = response.data.nextLesson
