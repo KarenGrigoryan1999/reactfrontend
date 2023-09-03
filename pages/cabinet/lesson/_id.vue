@@ -1,7 +1,9 @@
 <template lang="pug">
 #lesson-page
   activate-free-modal(v-if="showActivateFreeModal" :courseId="courseId")
-  h1.lesson__name {{ lesson.name }}
+  div.head-wrapper
+    app-button(size="l" type="bordered" :spot="false" @click.native="goBack")._btn К курсу
+    h1.lesson__name {{ lesson.name }}
   .lesson-wrapper
     img.lesson__screen-wrapper(
       src="../../../assets/img/lessons/screen.png",
@@ -103,10 +105,13 @@ export default {
     },
     goNextLesson() {
       if(!this.nextLesson) {
-        this.$router.push(`/cabinet`)
+        this.$router.replace(`/cabinet`)
       } else {
-        this.$router.push(`/cabinet/lesson/${this.nextLesson}`)
+        this.$router.replace(`/cabinet/lesson/${this.nextLesson}`)
       }
+    },
+    goBack() {
+      this.$router.go(-1)
     },
     async askQuestion() {
       this.isCorrect =
@@ -307,6 +312,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.head-wrapper {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  button {
+    white-space: nowrap;
+  }
 }
 .noiseContain {
   position: absolute;
