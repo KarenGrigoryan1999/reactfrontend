@@ -18,12 +18,14 @@ export default {
     },
     methods: {
         goToCourse() {
-            this.$router.push(`/courses/${this.teacher.courses[0].id}`);
+            const courses = this.teacher.courses;
+            const courseId = courses ? courses[0].id : 0;
+            this.setFreeCourseModalStatus(true, courseId);
         }
     },
     async mounted() {
         const illustration = await this.$axios.get(`/illustrations/type/${this.teacher.illustration_type}`);
-        this.illustration = illustration.data.photo[0];
+        this.illustration = illustration.data.photo ? illustration.data.photo[0] : '';
     }
 }
 </script>
