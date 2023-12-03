@@ -179,6 +179,7 @@
     @include mobile {
       flex: 0 0 50%;
       flex-direction: row;
+      padding-left: 0;
     }
   }
 }

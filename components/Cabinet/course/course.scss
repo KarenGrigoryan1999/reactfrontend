@@ -175,6 +175,7 @@
     cursor: pointer;
     position: relative;
     transition: color .3s ease-in-out;
+    color: black;
 
     &:hover {
       color: $purple;
