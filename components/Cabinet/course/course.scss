@@ -17,12 +17,12 @@
   &__elem {
     position: relative;
     margin-left: 32px;
-    max-width: 168px;
-    max-height: 168px;
+    max-width: 99px;
+    max-height: 99px;
     background-image: url('./img/lesson-paper.svg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     z-index: 1;
 
     &::after {
@@ -51,11 +51,11 @@
 
   &__download-link {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 26px;
     margin-left: -10px;
     display: block;
-    font-size: 40px;
-    line-height: 37px;
+    font-size: 27px;
+    line-height: 27px;
     color: $purple;
     cursor: pointer;
     transform: rotate(-45deg);
@@ -214,7 +214,7 @@
   &__decor-4 {
     position: absolute;
     top: -100px;
-    right: 100px;
+    right: 40px;
     width: 150px;
     z-index: -1;
   }
@@ -234,12 +234,12 @@
 
 .current {
   &::before {
-    background-image: url('../../../assets/img/lessons/arrow.svg');
+    background-image: url('../../../assets/img/lessons/current.png');
   }
 }
 
 .free {
   &::before {
-    background-image: url('../../../assets/img/lessons/free.png');
+    background-image: url('../../../assets/img/lessons/passed.png');
   }
 }

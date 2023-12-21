@@ -1,68 +1,74 @@
 <template lang="pug">
 #lesson-page
-  activate-free-modal(v-if="showActivateFreeModal" :courseId="courseId")
-  div.head-wrapper
-    app-button(size="l" type="bordered" :spot="false" @click.native="goBack")._btn К курсу
+  activate-free-modal(v-if="showActivateFreeModal", :courseId="courseId")
+  .head-wrapper
+    app-button._btn(
+      size="l",
+      type="bordered",
+      :spot="false",
+      @click.native="goBack"
+    ) К курсу
     h1.lesson__name {{ lesson.name }}
-  .lesson-wrapper
-    img.lesson__screen-wrapper(
-      src="../../../assets/img/lessons/screen.png",
-      alt=""
-    )
-    .lesson__screen-content
-      .noiseContain(v-if="videoError")
-        div
-        h1.lesson__answer-result.wrong.lesson-error-text {{ errorText }}
-      video.lesson__video(
-        preload="true",
-        autoplay,
-        controls,
-        controlsList="nodownload",
-        ref="videoField"
-      )
-        source(
-          v-if="lessonVideo",
-          :src="this.filePath(lessonVideo)",
-          type="video/mp4"
+  .tablet-wrapper
+    .lesson-wrapper
+      .lesson__screen-content
+        .noiseContain(v-if="videoError")
+          div
+          h1.lesson__answer-result.wrong.lesson-error-text {{ errorText }}
+        video.lesson__video(
+          preload="true",
+          autoplay,
+          controls,
+          controlsList="nodownload",
+          ref="videoField"
         )
-      .lesson__test-field(ref="messageField")
-        h1.lesson__test-grettings Спасибо за внимание!
-        p.lesson__test-grettings-text Готовы ответить на контрольный вопрос по теме?
-        app-button(size="l", @click.native="openTestHandle", :spot="false") Да!
-      .lesson__test-field(ref="testField")
-        h1.lesson__test-title {{ question.question }}
-        template(v-if="question.answer_1")
-          template(v-for="i in [1, 2, 3, 4]")
-            test-variant(
-              v-if="question[`answer_${i}`] !== ''"
-              :question="question && question[`answer_${i}`]",
-              :selectedAnswer="selectAnswer === i",
-              :isCorrect="isCorrect",
-              :number="i",
-              @selectAnswer="select"
+          source(
+            v-if="lessonVideo",
+            :src="this.filePath(lessonVideo)",
+            type="video/mp4"
+          )
+        .lesson__test-field(ref="messageField")
+          h1.lesson__test-grettings Спасибо за внимание!
+          p.lesson__test-grettings-text Готовы ответить на контрольный вопрос по теме?
+          app-button(size="l", @click.native="openTestHandle", :spot="false") Да!
+        .lesson__test-field(ref="testField")
+          h1.lesson__test-title {{ question.question }}
+          template(v-if="question.answer_1")
+            template(v-for="i in [1, 2, 3, 4]")
+              test-variant(
+                v-if="question[`answer_${i}`] !== ''",
+                :question="question && question[`answer_${i}`]",
+                :selectedAnswer="selectAnswer === i",
+                :isCorrect="isCorrect",
+                :number="i",
+                @selectAnswer="select"
+              )
+          template(v-if="!question.answer_1")
+            input.lesson__input-answer(
+              v-model="inputAnsver",
+              placeholder="введи свой ответ",
+              :disabled="isCorrect !== null"
             )
-        template(v-if="!question.answer_1")
-          input.lesson__input-answer(v-model="inputAnsver" placeholder="введи свой ответ" :disabled="isCorrect !== null")
-        p.lesson__answer-result.correct(v-if="isCorrect === true") Молодец! ответ верный
-        p.lesson__answer-result.wrong(v-if="isCorrect === false") УПС.. ответ неверный :(
-        app-button(
-          v-if="isCorrect === null",
-          size="l",
-          @click.native="askQuestion",
-          :spot="false"
-        ) Ответить
-        app-button(
-          v-if="isCorrect === false",
-          size="l",
-          @click.native="retryQuestion",
-          :spot="false"
-        ) Пройти еще раз!
-        app-button(
-          v-if="isCorrect === true",
-          size="l",
-          @click.native="goNextLesson",
-          :spot="false"
-        ) Следующий урок
+          p.lesson__answer-result.correct(v-if="isCorrect === true") Молодец! ответ верный
+          p.lesson__answer-result.wrong(v-if="isCorrect === false") УПС.. ответ неверный :(
+          app-button(
+            v-if="isCorrect === null",
+            size="l",
+            @click.native="askQuestion",
+            :spot="false"
+          ) Ответить
+          app-button(
+            v-if="isCorrect === false",
+            size="l",
+            @click.native="retryQuestion",
+            :spot="false"
+          ) Пройти еще раз!
+          app-button(
+            v-if="isCorrect === true",
+            size="l",
+            @click.native="goNextLesson",
+            :spot="false"
+          ) Следующий урок
 </template>
 
 <script>
@@ -82,29 +88,30 @@ export default {
       lessonVideo: null,
       nextLesson: null,
       videoError: null,
-      errorText: '',
+      errorText: "",
       freeModal: false,
       courseId: 0,
     }
   },
   computed: {
     lessonId: (state) => state.$route.params.id,
-    showActivateFreeModal: state => state.$store.getters.showActivateFreeModal,
+    showActivateFreeModal: (state) =>
+      state.$store.getters.showActivateFreeModal,
   },
   created() {
-    this.getLesson();
+    this.getLesson()
   },
   mounted() {
     document
       .querySelector(".lesson__video")
-      .addEventListener("ended", this.hideVideo, false);
+      .addEventListener("ended", this.hideVideo, false)
   },
   methods: {
     select(number) {
       this.selectAnswer = number
     },
     goNextLesson() {
-      if(!this.nextLesson) {
+      if (!this.nextLesson) {
         this.$router.replace(`/cabinet`)
       } else {
         this.$router.replace(`/cabinet/lesson/${this.nextLesson}`)
@@ -116,16 +123,17 @@ export default {
     async askQuestion() {
       this.isCorrect =
         this.question.correct_answer.trim() ===
-        this.question[`answer_${this.selectAnswer}`]?.trim() || this.inputAnsver === this.question.correct_answer.trim()
+          this.question[`answer_${this.selectAnswer}`]?.trim() ||
+        this.inputAnsver === this.question.correct_answer.trim()
       if (this.isCorrect) {
         const response = await this.$axios.put(`/lessons/${this.lessonId}`)
         this.nextLesson = response.data.nextLesson
       }
     },
     retryQuestion() {
-      this.isCorrect = null;
-      this.selectAnswer = null;
-      this.inputAnsver = null;
+      this.isCorrect = null
+      this.selectAnswer = null
+      this.inputAnsver = null
     },
     openTestHandle() {
       this.$refs.testField.classList.add("showed")
@@ -140,20 +148,22 @@ export default {
       await this.$axios
         .get(`/lessons/${this.lessonId}`)
         .then((r) => {
-          this.lesson = r.data;
-          this.question = r.data.question;
-          this.lessonVideo = this.lesson.video[0];
+          this.lesson = r.data
+          this.question = r.data.question
+          this.lessonVideo = this.lesson.video[0]
         })
         .catch(async (e) => {
-          if(e.message.indexOf('402') >= 0) {
-            const course = await this.$axios.get(`/lessons/course/${this.lessonId}`);
-            this.courseId = course.data.courseId;
-            this.errorText = 'Нужно преобрести полный курс :/';
-            this.setActivateFreeModal(true);
+          if (e.message.indexOf("402") >= 0) {
+            const course = await this.$axios.get(
+              `/lessons/course/${this.lessonId}`
+            )
+            this.courseId = course.data.courseId
+            this.errorText = "Нужно преобрести полный курс :/"
+            this.setActivateFreeModal(true)
           } else {
-            this.errorText = 'Ты не посмотрел предыдущий урок :(';
+            this.errorText = "Ты не посмотрел предыдущий урок :("
           }
-          this.videoError = true;
+          this.videoError = true
         })
     },
   },
@@ -172,7 +182,46 @@ export default {
   }
 }
 .lesson-wrapper {
+  border: 2px solid #219653;
   position: relative;
+  height: fit-content;
+  border-radius: 4vw;
+  width: fit-content;
+
+  &::after {
+    content: "";
+    width: 10px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    right: 0;
+    background-color: #4b4b4b;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
+
+  @include mobile {
+    border-radius: 8vw;
+  }
+}
+.tablet-wrapper {
+  position: relative;
+  width: fit-content;
+  padding-bottom: 20px;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #180841;
+    top: 50%;
+    right: 0;
+    margin-right: 7px;
+    margin-top: 55px;
+    border-radius: 50%;
+  }
 }
 .lesson {
   &__name {
@@ -194,7 +243,7 @@ export default {
   }
 
   &__input-answer {
-    font-family: '3Dumb';
+    font-family: "3Dumb";
     font-size: 18px;
     background: transparent;
     width: 95% !important;
@@ -210,6 +259,7 @@ export default {
   &__screen-wrapper {
     width: 70vw;
     height: 45vw;
+    border: 1px solid green;
 
     @include mobile {
       width: 100%;
@@ -218,13 +268,11 @@ export default {
   }
 
   &__screen-content {
+    border: 20px solid #8b8b8b;
     max-width: 100%;
-    width: 90%;
     height: 40vw;
-    background: aliceblue;
-    position: absolute;
-    left: 2vw;
-    top: 3vw;
+    background: #afafaf;
+    position: relative;
     border-radius: 4vw;
     overflow: hidden;
 
@@ -241,7 +289,6 @@ export default {
     }
 
     @include mobile {
-      width: 95%;
       height: 470px;
       border-radius: 8vw;
     }
@@ -306,7 +353,7 @@ export default {
 .wrong {
   color: #eb5757;
 }
-.lesson-error-text{
+.lesson-error-text {
   position: absolute;
   top: 0;
   display: flex;
